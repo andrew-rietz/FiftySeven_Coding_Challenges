@@ -49,27 +49,34 @@ def createNumbers(difficulty):
     return (numbers, number)
 
 def getInput():
-    while True:
-        try:
-            difficulty = int(input('''\
+    validInput = False
+    difficulty = input('''\
 Let's play Guess the Number.
-Pick a difficulty level (1, 2, or 3): '''))
-            break
-        except ValueError:
-            print('Please enter a number between 1 and 3')
+Pick a difficulty level (1, 2, or 3): ''')
+    while not(validInput):
+        while True:
+            try:
+                difficulty = int(difficulty)
+                break
+            except ValueError:
+                difficulty = input('Please enter a number between 1 and 3.\n')
 
+        validInput = (difficulty >= 1 and difficulty <= 3)
+        if not(validInput):
+            difficulty = input('Please enter a number between 1 and 3.\n')
+            
     return difficulty
 
 def checkGuessIsNumber(guess, number, nGuesses):
-
     while True:
         try:
             guess = int(guess)
             nGuesses += 1
-            break
         except ValueError:
             nGuesses += 1
-            print('Please enter a number.\n')
+            guess = input('Please enter a number.\n')
+
+
 
     return(guess, number, nGuesses)
 
