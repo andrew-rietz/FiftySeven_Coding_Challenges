@@ -64,7 +64,7 @@ Pick a difficulty level (1, 2, or 3): ''')
         validInput = (difficulty >= 1 and difficulty <= 3)
         if not(validInput):
             difficulty = input('Please enter a number between 1 and 3.\n')
-            
+
     return difficulty
 
 def checkGuessIsNumber(guess, number, nGuesses):
