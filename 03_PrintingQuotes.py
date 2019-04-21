@@ -1,4 +1,4 @@
-'''
+"""
 
 Quotation marks are often used to denote the start
 and end of a string. But sometimes we need to print
@@ -27,9 +27,9 @@ If your language supports string interpolation or
 string substitution, don't use it for this exercise.
 Use string concatenation instead.
 
-'''
+"""
 
-quote = input('What is the quote? ')
-author = input('Who said it? ')
+quote = input("What is the quote? ")
+author = input("Who said it? ")
 
 print(f'{author} says, "{quote}"')

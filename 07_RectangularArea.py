@@ -1,4 +1,4 @@
-'''
+"""
 
 When working in a global environment, you'll have to
 present information in both metric and Imperial units.
@@ -30,22 +30,22 @@ ___________________
 Keep the calculations separate from the output
 Use a constant to hold the conversion factor
 
-'''
+"""
 
-'Conversion factor for ft2 to m2'
+"Conversion factor for ft2 to m2"
 conv = 0.09290304
 
-'Rest of the code'
-len = float(input('What is the length of the room' +
-                  'in feet? '))
-width = float(input('What is the width of the ' +
-                    'room in feet? '))
+"Rest of the code"
+len = float(input("What is the length of the room" + "in feet? "))
+width = float(input("What is the width of the " + "room in feet? "))
 
-ft2 = round(len * width,0)
-m2 = round(ft2 * conv,3)
+ft2 = round(len * width, 0)
+m2 = round(ft2 * conv, 3)
 
-print(f'''\
+print(
+    f"""\
 The area is:
 {ft2} square feet
 {m2} square meters\
-''')
+"""
+)

@@ -1,4 +1,4 @@
-'''
+"""
 
 Write a guess the number game that has three levels
 of difficulty. The first level of difficult would
@@ -35,37 +35,43 @@ Don't allow any non-numeric data entry.
 During the game, count non-numeric entries as
 wrong guesses
 
-'''
+"""
+
 
 def createNumbers(difficulty):
     import random
+
     numbers = {}
-    topEnd = '1' + '0'*difficulty
+    topEnd = "1" + "0" * difficulty
     topEnd = int(topEnd)
-    for n in range(1,topEnd+1):
-        numbers[n] = ''
+    for n in range(1, topEnd + 1):
+        numbers[n] = ""
 
     number = random.randrange(1, topEnd + 1)
     return (numbers, number)
 
+
 def getInput():
     validInput = False
-    difficulty = input('''\
+    difficulty = input(
+        """\
 Let's play Guess the Number.
-Pick a difficulty level (1, 2, or 3): ''')
-    while not(validInput):
+Pick a difficulty level (1, 2, or 3): """
+    )
+    while not (validInput):
         while True:
             try:
                 difficulty = int(difficulty)
                 break
             except ValueError:
-                difficulty = input('Please enter a number between 1 and 3.\n')
+                difficulty = input("Please enter a number between 1 and 3.\n")
 
-        validInput = (difficulty >= 1 and difficulty <= 3)
-        if not(validInput):
-            difficulty = input('Please enter a number between 1 and 3.\n')
+        validInput = difficulty >= 1 and difficulty <= 3
+        if not (validInput):
+            difficulty = input("Please enter a number between 1 and 3.\n")
 
     return difficulty
+
 
 def checkGuessIsNumber(guess, number, nGuesses):
     while True:
@@ -74,11 +80,10 @@ def checkGuessIsNumber(guess, number, nGuesses):
             nGuesses += 1
         except ValueError:
             nGuesses += 1
-            guess = input('Please enter a number.\n')
+            guess = input("Please enter a number.\n")
 
+    return (guess, number, nGuesses)
 
-
-    return(guess, number, nGuesses)
 
 def playGame():
     difficulty = getInput()
@@ -87,28 +92,30 @@ def playGame():
 
     nGuesses = 0
 
-    guess = input('''I have my number. What's your guess? ''')
+    guess = input("""I have my number. What's your guess? """)
 
     while guess != number:
         (guess, number, nGuesses) = checkGuessIsNumber(guess, number, nGuesses)
 
-        if  guess > number:
-            guess = input('''Too high. What's your guess? ''')
+        if guess > number:
+            guess = input("""Too high. What's your guess? """)
         elif guess < number:
-            guess = input('''Too low. What's your guess? ''')
+            guess = input("""Too low. What's your guess? """)
 
-    print(f'''You got it in {nGuesses} guesses!''')
+    print(f"""You got it in {nGuesses} guesses!""")
+
 
 def main():
     play = True
 
     while play:
-        print('\n'*100)
+        print("\n" * 100)
         playGame()
-        playAgain = input('Play again? [Y/N]  ')
-        if playAgain.upper() == 'N':
+        playAgain = input("Play again? [Y/N]  ")
+        if playAgain.upper() == "N":
             play = False
 
-    print('Goodbye!')
+    print("Goodbye!")
+
 
 main()

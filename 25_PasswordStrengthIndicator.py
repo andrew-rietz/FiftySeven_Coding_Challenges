@@ -1,4 +1,4 @@
-'''
+"""
 
 Functions help you abstract away complex operations,
 but they also help you build reusable components.
@@ -34,12 +34,13 @@ the function return a string - you may need to
 support multiple languages in the future.
 Use a single output staement.
 
-'''
+"""
+
 
 def passwordValidator(pw):
     letters = [c for c in pw if c.isalpha()]
     digits = [c for c in pw if c.isdigit()]
-    special = [c for c in pw if c in '!@#$%^&*()_-+=?<>']
+    special = [c for c in pw if c in "!@#$%^&*()_-+=?<>"]
 
     strength = 0
     if len(letters) > 0:
@@ -55,25 +56,27 @@ def passwordValidator(pw):
     if len(pw) < 8:
         strength = min(strength, 2)
 
-    if ' ' in pw:
-        print('Passwords cannot include spaces.')
+    if " " in pw:
+        print("Passwords cannot include spaces.")
         strength = -1
 
     return strength
 
+
 def main():
 
-    pws = ['s p a c e s','12345', 'abcdef', 'abc123xyz', '1337h@xor!']
+    pws = ["s p a c e s", "12345", "abcdef", "abc123xyz", "1337h@xor!"]
     strength = {
-    1:'a very weak password',
-    2:'a weak password',
-    3:'a strong password',
-    4:'a very strong password',
-    -1:'an invalid password (includes spaces)'
+        1: "a very weak password",
+        2: "a weak password",
+        3: "a strong password",
+        4: "a very strong password",
+        -1: "an invalid password (includes spaces)",
     }
 
     for pw in pws:
         val = passwordValidator(pw)
         print(f"The password '{pw}' is {strength[val]}.")
+
 
 main()

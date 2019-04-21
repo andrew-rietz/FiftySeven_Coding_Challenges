@@ -1,4 +1,4 @@
-'''
+"""
 
 You can test for equality, but you may need to
 test to see how a number compares to known value and
@@ -32,8 +32,8 @@ language doesn't support a ternary operator, use a
 regular if/else statement, and still use a single
 output statement to display the message.
 
-'''
+"""
 
-age = int(input('What is your age? '))
-check = "aren't" if age<16 else 'are'
-print(f'You {check} old enough to legally drive')
+age = int(input("What is your age? "))
+check = "aren't" if age < 16 else "are"
+print(f"You {check} old enough to legally drive")

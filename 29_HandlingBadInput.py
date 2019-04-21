@@ -1,4 +1,4 @@
-'''
+"""
 
 The rule of 72 is a quick method for estimating how
 long it will take to double your investment, by
@@ -40,30 +40,37 @@ Don't allow non-numeric values
 Use a loop to trap bad input, so you can ensure
 that the user enters valid values
 
-'''
+"""
+
+
 def main():
 
-    rate = validateInput('What is the rate of return? ')
+    rate = validateInput("What is the rate of return? ")
     years = calcYears(rate)
 
-    print(f'It will take {years} years to double your initial investment.')
+    print(f"It will take {years} years to double your initial investment.")
+
 
 def validateInput(prompt):
     while True:
-        inpt = input(f'{prompt}')
+        inpt = input(f"{prompt}")
         try:
             inpt = float(inpt)
             if float(inpt) < 0:
-                print('Sorry - input invalid. Please enter a positive number.')
+                print("Sorry - input invalid. Please enter a positive number.")
             elif float(inpt) == 0:
-                print('Sorry - input invalid. Please enter a positive (non-zero) number.')
+                print(
+                    "Sorry - input invalid. Please enter a positive (non-zero) number."
+                )
             else:
                 break
         except ValueError:
-            print('Sorry - input invalid. Please enter a positive number.')
+            print("Sorry - input invalid. Please enter a positive number.")
     return float(inpt)
 
+
 def calcYears(r):
-    return round(72/r,2)
+    return round(72 / r, 2)
+
 
 main()

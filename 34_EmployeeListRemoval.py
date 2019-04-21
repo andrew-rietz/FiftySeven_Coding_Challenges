@@ -1,4 +1,4 @@
-'''
+"""
 
 Sometimes you have to locate and remove an entry
 from a list based on some criteria. You may have a
@@ -40,18 +40,24 @@ Constraint
 ___________________
 Use an array or list to store the names
 
-'''
+"""
+
+
 def readNames():
     allNames = [
-                'John Smith', 'Jackie Johnson',
-                'Chris Jones', 'Amanda Cullen',
-                'Jeremy Goodwin'
-                ]
+        "John Smith",
+        "Jackie Johnson",
+        "Chris Jones",
+        "Amanda Cullen",
+        "Jeremy Goodwin",
+    ]
     return allNames
+
 
 def printNames(allNames):
     for name in allNames:
         print(name)
+
 
 def removeName(allNames, userEntry):
     nameFound = False
@@ -60,24 +66,26 @@ def removeName(allNames, userEntry):
             allNames.remove(name)
             nameFound = True
     if not nameFound:
-        print('Sorry, that employee is not in the list.')
+        print("Sorry, that employee is not in the list.")
 
     return allNames
 
+
 def main():
     allNames = readNames()
-    moreToRemove = ''
+    moreToRemove = ""
     while True:
-        print(f'There are {len(allNames)} employees:')
+        print(f"There are {len(allNames)} employees:")
         printNames(allNames)
 
-        if moreToRemove.upper() == 'N':
+        if moreToRemove.upper() == "N":
             break
 
-        userEntry = input('Enter an employee name to remove: ').strip()
+        userEntry = input("Enter an employee name to remove: ").strip()
         allNames = removeName(allNames, userEntry)
-        moreToRemove = input('Remove more names? [Y/N] ').strip()
+        moreToRemove = input("Remove more names? [Y/N] ").strip()
 
-        print('\n'*100)
+        print("\n" * 100)
+
 
 main()

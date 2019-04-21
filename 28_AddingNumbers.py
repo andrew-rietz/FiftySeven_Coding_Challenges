@@ -1,4 +1,4 @@
-'''
+"""
 
 Write a program that prompts the user for five
 numbers and computes the total of the numbers.
@@ -20,16 +20,19 @@ The prompting must use repetition, such as a counted
 loop, not three separate prompts.
 Create a flow chart before writing the program
 
-'''
+"""
+
 
 def main():
     nums = getInputs(5)
-    print(f'The total is {sum(nums)}')
+    print(f"The total is {sum(nums)}")
+
 
 def getInputs(n):
     nums = []
     for num in range(n):
-        nums.append(float(input('Enter a number: ')))
+        nums.append(float(input("Enter a number: ")))
     return nums
+
 
 main()

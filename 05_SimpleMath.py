@@ -1,4 +1,4 @@
-'''
+"""
 
 You'll often write program that deal with numbers. And
 depending on the programming language you use, you'll
@@ -30,22 +30,24 @@ conversions and other processing.
 Generate a single output statement with line breaks
 in the appropriate spots.
 
-'''
+"""
 
-firstnum = input('What is the first number? ')
-secondnum = input('What is the second number? ')
+firstnum = input("What is the first number? ")
+secondnum = input("What is the second number? ")
 
 firstnum = float(firstnum)
 secondnum = float(secondnum)
 
-sum = round(firstnum + secondnum,1)
-difference = round(firstnum - secondnum,1)
-product = round(firstnum * secondnum,1)
-quotient = round(firstnum / secondnum,1)
+sum = round(firstnum + secondnum, 1)
+difference = round(firstnum - secondnum, 1)
+product = round(firstnum * secondnum, 1)
+quotient = round(firstnum / secondnum, 1)
 
-print(f'''
+print(
+    f"""
     {firstnum} + {secondnum} = {sum}\n
     {firstnum} - {secondnum} = {difference}\n
     {firstnum} * {secondnum} = {product}\n
     {firstnum} / {secondnum} = {quotient}
-''')
+"""
+)

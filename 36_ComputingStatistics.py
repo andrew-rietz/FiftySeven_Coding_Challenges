@@ -1,4 +1,4 @@
-'''
+"""
 
 Statistics is important in our field. When measuring
 response times or rending times it's helpful to
@@ -52,19 +52,22 @@ to strings.
 - Keep the input separate from the processing
 and output.
 
-'''
+"""
+
 
 def getInputs():
     numbers = []
     while True:
-        lastNumber = input('Enter a number: ')
-        if lastNumber.upper() == 'DONE':
+        lastNumber = input("Enter a number: ")
+        if lastNumber.upper() == "DONE":
             break
         numbers.append(float(lastNumber))
     return numbers
 
+
 def calcMean(numbers):
-    return sum(numbers)/len(numbers)
+    return sum(numbers) / len(numbers)
+
 
 def calcStandardDeviation(numbers):
     smallestNumber = min(numbers)
@@ -79,21 +82,25 @@ def calcStandardDeviation(numbers):
 
     return [meanVal, smallestNumber, largestNumber, standardDeviation]
 
+
 def main():
     numbers = getInputs()
     calculatedValues = calcStandardDeviation(numbers)
-    meanVal = round(calculatedValues[0],2)
+    meanVal = round(calculatedValues[0], 2)
     smallestNumber = calculatedValues[1]
     largestNumber = calculatedValues[2]
-    standardDeviation = round(calculatedValues[3],2)
+    standardDeviation = round(calculatedValues[3], 2)
     printNumbers = [str(number) for number in numbers]
 
-    print(f'''\
+    print(
+        f"""\
 Numbers: {', '. join(printNumbers)}
 The average is {meanVal}.
 The minimum is {smallestNumber}.
 The maximum is {largestNumber}.
 The standard deviation is {standardDeviation}\
-    ''')
+    """
+    )
+
 
 main()

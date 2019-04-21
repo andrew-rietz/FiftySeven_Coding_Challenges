@@ -1,4 +1,4 @@
-'''
+"""
 
 You'll often need to determine which part of a
 program is run based on uesr input or other events.
@@ -32,35 +32,37 @@ C and F
 Use as few output statements as possible and avoid
 repeated output strings
 
-'''
+"""
 
-type = {'C':'Celsius', 'F':'Fahrenheit'}
-opp_type = {'C':'Fahrenheit', 'F':'Celsius'}
+type = {"C": "Celsius", "F": "Fahrenheit"}
+opp_type = {"C": "Fahrenheit", "F": "Celsius"}
 
 while True:
-    user_type = input(f'''
+    user_type = input(
+        f"""
 Press C to convert from Fahrenheit to Celsius.
 Press F to convert from Celsius to Fahrenheit.
 Please enter your choice: \
-''').upper()
-    if user_type == 'C' or user_type == 'F':
+"""
+    ).upper()
+    if user_type == "C" or user_type == "F":
         break
     else:
-        print('Please enter either C or F.')
+        print("Please enter either C or F.")
 
 while True:
     try:
-        temp = float(input(f'Please enter the temperature in {type[user_type]}: '))
+        temp = float(input(f"Please enter the temperature in {type[user_type]}: "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
+        print("Please enter a numeric value.")
 
 
-if user_type == 'C':
-    new_temp = (temp * 9/5) + 32
+if user_type == "C":
+    new_temp = (temp * 9 / 5) + 32
 else:
-    new_temp = (temp - 32) * 5/9
+    new_temp = (temp - 32) * 5 / 9
 
-new_temp = round(new_temp,2)
+new_temp = round(new_temp, 2)
 
-print(f'The temperature in {opp_type[user_type]} is {new_temp}.\n')
+print(f"The temperature in {opp_type[user_type]} is {new_temp}.\n")

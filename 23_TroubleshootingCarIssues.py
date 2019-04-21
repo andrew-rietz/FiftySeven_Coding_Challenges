@@ -1,4 +1,4 @@
-'''
+"""
 
 An 'expert system' is a type of artificial
 intelligence program that uses a knowledge base
@@ -29,32 +29,34 @@ Ask only questions that are relevant to the
 situation and to the previous answers. Don't ask for
 all inputs at once.
 
-'''
+"""
 
-tree_loc = ''
-tree_val = 'Is the car silent when you turn the key?'
+tree_loc = ""
+tree_val = "Is the car silent when you turn the key?"
 tree = {
-    '0':'Does the car mark a clicking noise?',
-    '00':'Does the car crank up but fail to start?',
-    '000':'Does the engine start and then die?',
-    '0001':'Does your car have fuel injection?',
-    '00010':'Check to ensure the choke is opening and closing.',
-    '00011':'Get it in for service.',
-    '01':'Replace the battery.',
-    '001':'Check spark plug connections.',
-    '1':'Are the battery terminal corroded?',
-    '10':'Replace cables and try again.',
-    '11':'Clean terminals and try starting again.'
+    "0": "Does the car mark a clicking noise?",
+    "00": "Does the car crank up but fail to start?",
+    "000": "Does the engine start and then die?",
+    "0001": "Does your car have fuel injection?",
+    "00010": "Check to ensure the choke is opening and closing.",
+    "00011": "Get it in for service.",
+    "01": "Replace the battery.",
+    "001": "Check spark plug connections.",
+    "1": "Are the battery terminal corroded?",
+    "10": "Replace cables and try again.",
+    "11": "Clean terminals and try starting again.",
 }
 
-print('You will be asked a series of questions. Please respond with either a "Y" or "N".')
-while tree_val[len(tree_val)-1]=='?':
-    resp = input(tree_val + ' ')
-    if resp.upper() == 'Y':
-        tree_loc += '1'
+print(
+    'You will be asked a series of questions. Please respond with either a "Y" or "N".'
+)
+while tree_val[len(tree_val) - 1] == "?":
+    resp = input(tree_val + " ")
+    if resp.upper() == "Y":
+        tree_loc += "1"
         tree_val = tree[tree_loc]
-    elif resp.upper() == 'N':
-        tree_loc += '0'
+    elif resp.upper() == "N":
+        tree_loc += "0"
         tree_val = tree[tree_loc]
     else:
         print('Invalid input, try again. Please enter either "Y" or "N".')

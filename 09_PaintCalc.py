@@ -1,4 +1,4 @@
-'''
+"""
 
 Sometimes you have to round up to the next number
 rather than follow standard rounding rules.
@@ -21,17 +21,19 @@ ___________________
 Use a constant to hold the conversion rate
 Ensure that you round UP to the next whole number
 
-'''
+"""
 import math
-'Conversion factor: one gallon == 350 sq ft'
+
+"Conversion factor: one gallon == 350 sq ft"
 conv = 350
 
-area = int(input('What is the size of the ' +
-                 'ceiling in square feet? '))
+area = int(input("What is the size of the " + "ceiling in square feet? "))
 
-gallons = math.ceil(area/conv)
+gallons = math.ceil(area / conv)
 
-print(f'''\
+print(
+    f"""\
 You will need to purchase {gallons} gallons of \
 paint to cover {area} square feet.\
-''')
+"""
+)

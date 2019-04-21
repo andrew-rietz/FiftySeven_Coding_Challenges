@@ -1,4 +1,4 @@
-'''
+"""
 
 Computing simple interest is a great way to quickly
 figure out whether an investment has value. It's
@@ -35,22 +35,22 @@ Ensure the fractions of a cent are rounded up to the
 next penny.
 Ensure that the output is formatted as money.
 
-'''
+"""
 import math
 
-'Create a constant to convert %s'
+"Create a constant to convert %s"
 conv_pct = 100
 
-principal = float(input('Enter the principal: '))
-rate = float(input('Enter the rate of interest: '))
-years = float(input('Enter the number of years: '))
+principal = float(input("Enter the principal: "))
+rate = float(input("Enter the rate of interest: "))
+years = float(input("Enter the number of years: "))
 
-accrued = round(principal * (1+(rate/conv_pct)*years),2)
-accrued = '{:,.2f}'.format(accrued)
-principal = '{:,.2f}'.format(principal)
+accrued = round(principal * (1 + (rate / conv_pct) * years), 2)
+accrued = "{:,.2f}".format(accrued)
+principal = "{:,.2f}".format(principal)
 
-print(f'''
-After {years} years at {rate}%, the initial \
-investment of ${principal} will
-be worth ${accrued}\
-''')
+print(
+    f"""
+    After {years} years at {rate}%, the initial investment of ${principal} will be worth ${accrued}/
+    """
+)

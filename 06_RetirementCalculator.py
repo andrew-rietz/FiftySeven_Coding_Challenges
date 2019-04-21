@@ -1,4 +1,4 @@
-'''
+"""
 
 Your computer knows what the current year is, which
 means you can incorporate that into your programs.
@@ -28,19 +28,19 @@ Don't hard-code the current year into the program.
 Get it from the system time via your programming
 language.
 
-'''
+"""
 
 from datetime import datetime
 
 year = datetime.date(datetime.today()).year
 
-age = int(input('What is your current age? '))
-retire_age = int(input('At what age would you like ' +
-                       'to retire? '))
+age = int(input("What is your current age? "))
+retire_age = int(input("At what age would you like " + "to retire? "))
 
-print(f'You have {retire_age - age} years left ' +
-       'until you can retire.')
-print(f'''\
+print(f"You have {retire_age - age} years left " + "until you can retire.")
+print(
+    f"""\
 It's {year}, so you can retire in \
 {year + (retire_age - age)}.\
-      ''')
+      """
+)

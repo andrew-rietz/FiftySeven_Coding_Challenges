@@ -1,4 +1,4 @@
-'''
+"""
 
 You'll often need to see if one value is within a
 certain range and alter the flow of a program as a
@@ -34,30 +34,33 @@ ___________________
 Ensure your program takes only numeric data. Don't
 let the user continue unless the data is valid.
 
-'''
+"""
 
 while True:
     try:
-        height = float(input('Please enter your height in inches: '))
+        height = float(input("Please enter your height in inches: "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
+        print("Please enter a numeric value.")
 
 while True:
     try:
-        weight = float(input('Please enter your weight in pounds: '))
+        weight = float(input("Please enter your weight in pounds: "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
+        print("Please enter a numeric value.")
 
 bmi = (weight / height ** 2) * 703
 
 if bmi >= 18.5 and bmi <= 25:
-    out = 'You are within the ideal weight range.'
+    out = "You are within the ideal weight range."
 else:
-    over_under = 'over' if bmi > 25 else 'under'
-    out = f'You are {over_under}weight. You should see your doctor.'
+    over_under = "over" if bmi > 25 else "under"
+    out = f"You are {over_under}weight. You should see your doctor."
 
-print(f'''
+print(
+    f"""
 Your BMI is {'{:.1f}'.format(bmi)}.
-''' + out)
+"""
+    + out
+)

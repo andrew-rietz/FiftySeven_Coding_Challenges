@@ -1,4 +1,4 @@
-'''
+"""
 
 More complex programs may have decisions nested in
 other decisions, so that when one decision is made,
@@ -35,34 +35,34 @@ For WI residents, prompt for the county of residence
  Use a single output statement at the end of the
  program to display the program results
 
- '''
+ """
 
 tax_rate = 0
-out = ''
+out = ""
 
-#Create dictionaries to hold the tax rate for each state / county
-county_tax = {'WI':{'Eau Claire':0.005, 'Dunn':0.004}}
-state_tax = {'IL':0.08, 'WI': 0.05}
+# Create dictionaries to hold the tax rate for each state / county
+county_tax = {"WI": {"Eau Claire": 0.005, "Dunn": 0.004}}
+state_tax = {"IL": 0.08, "WI": 0.05}
 
 while True:
     try:
-        subtotal = float(input('What is the order amount? '))
+        subtotal = float(input("What is the order amount? "))
         break
     except ValueError:
         print("Please enter a numeric value.")
 
-state = input('What state do you live in? ')
+state = input("What state do you live in? ")
 
 if state in state_tax:
     if state in county_tax:
-        county = input('What county do you live in? ')
+        county = input("What county do you live in? ")
         if county in county_tax[state]:
             tax_rate = state_tax[state] + county_tax[state][county]
         else:
             tax_rate = state_tax[state]
     tax = tax_rate * subtotal
-    out += f'''The tax is ${'{:,.2f}'.format(tax)}.\n'''
+    out += f"""The tax is ${'{:,.2f}'.format(tax)}.\n"""
 
 total = subtotal * (1 + tax_rate)
-out += f'''The total is ${'{:,.2f}'.format(total)}.'''
+out += f"""The total is ${'{:,.2f}'.format(total)}."""
 print(out)

@@ -1,4 +1,4 @@
-'''
+"""
 
 It can take a lot longer to pay off your credit card
 balance than you might realize. And the formula for
@@ -43,24 +43,27 @@ months. Don't access any of these values outside
 the function.
 Round fractions of a cent up to the next cent.
 
-'''
+"""
 
 from math import log10, ceil
 
+
 def main():
-    bal = float(input('What is your balance? '))
-    apr = float(input('What is the APR? '))
-    pmt = float(input('What is the monthly payment? '))
+    bal = float(input("What is your balance? "))
+    apr = float(input("What is the APR? "))
+    pmt = float(input("What is the monthly payment? "))
 
     months = calculateMonthsUntilPaidOff(bal, apr, pmt)
     months = ceil(months)
 
-    print(f'It will take you {months} months to pay off this card.')
+    print(f"It will take you {months} months to pay off this card.")
+
 
 def calculateMonthsUntilPaidOff(bal, apr, pmt):
 
     i = apr / 100 / 365
-    months = (-1.0/30) * log10(1 + (bal / pmt) * (1 - (1 + i)**30))/log10(1+i)
+    months = (-1.0 / 30) * log10(1 + (bal / pmt) * (1 - (1 + i) ** 30)) / log10(1 + i)
     return months
+
 
 main()

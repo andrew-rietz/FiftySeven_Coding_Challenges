@@ -1,4 +1,4 @@
-'''
+"""
 
 Arrays don't have to be hard-coded. You can take
 user input and store it in an array and then work
@@ -31,23 +31,27 @@ from the array.
 of the array ahead of time. You may need to find
 another data structure, like an ArrayList
 
-'''
+"""
+
 
 def getInputs():
     contestants = []
     while True:
-        newContestant = input('Enter a name: ')
-        if newContestant != '':
+        newContestant = input("Enter a name: ")
+        if newContestant != "":
             contestants.append(newContestant)
         else:
             break
     return contestants
 
+
 def main():
     from random import choice
+
     contestants = getInputs()
 
-    winner = (choice(contestants))
-    print(f'The winner is... {winner}')
+    winner = choice(contestants)
+    print(f"The winner is... {winner}")
+
 
 main()

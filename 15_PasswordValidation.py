@@ -1,4 +1,4 @@
-'''
+"""
 
 Passwords are validated by comparing a user-provided
 value with a known value that's stored. Either it's
@@ -29,14 +29,14 @@ ___________________
 Use an if/else statement for this problem
 Make sure the program is case sensitive
 
-'''
+"""
 
-#Create the password
-pw = 'abc$123'
+# Create the password
+pw = "abc$123"
 
-login = str(input('What is the password? '))
+login = str(input("What is the password? "))
 
 if login == pw:
-    print('Welcome!')
+    print("Welcome!")
 else:
     print("I don't know you.")

@@ -1,4 +1,4 @@
-'''
+"""
 
 Many programs display information to the end user in
 one form but use a different form inside the program.
@@ -26,24 +26,24 @@ ___________________
 Use a switch or case statement for this program.
 Use a single output statement for this program.
 
-'''
-#NOTE: Python does not support switch / case statments.
-#Will implement using a dictionary instead.
+"""
+# NOTE: Python does not support switch / case statments.
+# Will implement using a dictionary instead.
 
 months = {
-    1:'January',
-    2:'February',
-    3:'March',
-    4:'April',
-    5:'May',
-    6:'June',
-    7:'July',
-    8:'August',
-    9:'September',
-    10:'October',
-    11:'November',
-    12:'December'
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
 }
 
-num_val = int(input('Please enter the number of the month: '))
-print(f'The name of the month is {months[num_val]}.')
+num_val = int(input("Please enter the number of the month: "))
+print(f"The name of the month is {months[num_val]}.")

@@ -1,4 +1,4 @@
-'''
+"""
 
 At some point, you might have to deal with
 currency exchange rates, and you'll need to ensure
@@ -34,17 +34,19 @@ Ensure that fractions of a cent are rounded up
 to the next penny
 Use a single output statement
 
-'''
+"""
 
 import math
 
-amount_from = float(input('How many euros are you exchanging? '))
-rate_from = float(input('What is the exchange rate? '))
+amount_from = float(input("How many euros are you exchanging? "))
+rate_from = float(input("What is the exchange rate? "))
 rate_to = 100
 
-amount_to = round(amount_from * rate_from / rate_to,2)
+amount_to = round(amount_from * rate_from / rate_to, 2)
 
-print(f'''\
+print(
+    f"""\
 {amount_from} euros at an exchange rate of {rate_from} is
 {amount_to} U.S. dollars.\
-''')
+"""
+)

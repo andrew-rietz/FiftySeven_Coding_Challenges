@@ -1,4 +1,4 @@
-'''
+"""
 
 Sometimes you have to perform a more complex
 calculation based on some provided inputs and then use
@@ -34,42 +34,44 @@ Constraint
 ___________________
 Prevent the user from entering non-numeric values.
 
-'''
+"""
 
-#Create a dictionary to hold common assumptions
-#for alcohol content of beverages
+# Create a dictionary to hold common assumptions
+# for alcohol content of beverages
 
-alc = {'beer':5, 'wine':12, 'liquor':40}
-oz = {'beer':12, 'wine':5, 'liquor':1.5}
-gender = input('What is your gender (M/F)? ')
+alc = {"beer": 5, "wine": 12, "liquor": 40}
+oz = {"beer": 12, "wine": 5, "liquor": 1.5}
+gender = input("What is your gender (M/F)? ")
 while True:
     try:
-        weight = float(input('How much do you weigh (in pounds)? '))
+        weight = float(input("How much do you weigh (in pounds)? "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
+        print("Please enter a numeric value.")
 while True:
     try:
-        drinks = float(input('How many drinks have you had? '))
+        drinks = float(input("How many drinks have you had? "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
-type = input('Are you drinking beer, wine, or liquor? ')
+        print("Please enter a numeric value.")
+type = input("Are you drinking beer, wine, or liquor? ")
 while True:
     try:
-        last_drink = float(input('How long ago was your last drink (in hours)? '))
+        last_drink = float(input("How long ago was your last drink (in hours)? "))
         break
     except ValueError:
-        print('Please enter a numeric value.')
+        print("Please enter a numeric value.")
 
-r = 0.73 if gender.upper() == 'M' else 0.66
+r = 0.73 if gender.upper() == "M" else 0.66
 
-alcohol = drinks * oz[type] * alc[type]/100
-bac = round((alcohol * 5.14 / weight * r) - 0.015 * last_drink,2)
+alcohol = drinks * oz[type] * alc[type] / 100
+bac = round((alcohol * 5.14 / weight * r) - 0.015 * last_drink, 2)
 
-legal = 'not legal' if bac >= 0.08 else 'legal'
+legal = "not legal" if bac >= 0.08 else "legal"
 
-print(f'''
+print(
+    f"""
 Your BAC is {'{:.2f}'.format(bac)}.
 It is {legal} for you to drive.
-''')
+"""
+)

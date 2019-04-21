@@ -1,4 +1,4 @@
-'''
+"""
 
 When you loop, you can control how much you increment
 the counter; you don't always have to increment by
@@ -44,51 +44,58 @@ numbers. Don't allow the user to continue without
 entering valid inputs.
 -Display the results in a tabular format
 
-'''
+"""
+
 
 def getInputs():
     while True:
         try:
-            restingHR = int(input('What is your resting pulse? '))
+            restingHR = int(input("What is your resting pulse? "))
             break
         except ValueError:
-            print('Please enter an integer value.')
+            print("Please enter an integer value.")
 
     while True:
         try:
-            age = int(input('How old are you? '))
+            age = int(input("How old are you? "))
             break
         except ValueError:
-            print('Please enter an integer value.')
+            print("Please enter an integer value.")
 
     return (restingHR, age)
 
+
 def karvonenHR(restingHR, age, intensity):
-    targetHeartRate = (((220 - age) - restingHR) * (intensity/100)) + restingHR
-    return str(int(targetHeartRate)) + ' bpm'
+    targetHeartRate = (((220 - age) - restingHR) * (intensity / 100)) + restingHR
+    return str(int(targetHeartRate)) + " bpm"
+
 
 def prettyTabular(intensity, heartRate):
-    #Takes in two values and prints them out in a tabular format
-    #If no values passed in, returns a 'line break'
-    if intensity == heartRate and intensity == '':
-        outString = f'-'*15 + '|'
-        outString += f'-'*12
+    # Takes in two values and prints them out in a tabular format
+    # If no values passed in, returns a 'line break'
+    if intensity == heartRate and intensity == "":
+        outString = f"-" * 15 + "|"
+        outString += f"-" * 12
     else:
-        outString = f'{intensity}'.ljust(15) + '|'
-        outString += f'  {heartRate}'.ljust(10)
+        outString = f"{intensity}".ljust(15) + "|"
+        outString += f"  {heartRate}".ljust(10)
 
     return outString
+
 
 def main():
 
     (restingHR, age) = getInputs()
 
-    outString = f'Resting pulse: {restingHR}    Age: {age}'
-    outString += '\n'*2 + prettyTabular('Intensity','Pulse')
-    outString += '\n' + prettyTabular('','')
+    outString = f"Resting pulse: {restingHR}    Age: {age}"
+    outString += "\n" * 2 + prettyTabular("Intensity", "Pulse")
+    outString += "\n" + prettyTabular("", "")
     for intensity in range(55, 96, 5):
-        outString += '\n' + prettyTabular(str(intensity) + '%', karvonenHR(restingHR, age, intensity))
+        outString += "\n" + prettyTabular(
+            str(intensity) + "%", karvonenHR(restingHR, age, intensity)
+        )
 
     print(outString)
+
 
 main()

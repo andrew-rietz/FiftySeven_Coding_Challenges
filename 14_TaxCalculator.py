@@ -1,4 +1,4 @@
-'''
+"""
 
 You don't always need a complex control structure to
 solve simple problems. Sometimes a program requires
@@ -37,20 +37,20 @@ Ensure all the money is rounded to the nearest cent.
 Use a single output statement at the end of the
 program to display the program results
 
-'''
+"""
 
-subtotal = float(input('What is the order amount? '))
-state = str(input('What is the state? '))
+subtotal = float(input("What is the order amount? "))
+state = str(input("What is the state? "))
 tax_rate = 0
-out = ''
+out = ""
 
-if state.upper() == 'WI':
+if state.upper() == "WI":
     tax_rate = 0.055
-    tax = round(subtotal * tax_rate,2)
+    tax = round(subtotal * tax_rate, 2)
 
-    out += f'''The subtotal is ${'{:,.2f}'.format(subtotal)}.\n'''
-    out += f'''The tax is ${'{:,.2f}'.format(tax)}.\n'''
+    out += f"""The subtotal is ${'{:,.2f}'.format(subtotal)}.\n"""
+    out += f"""The tax is ${'{:,.2f}'.format(tax)}.\n"""
 
-total = '{:,.2f}'.format(round(subtotal * (1 + tax_rate),2))
-out += f'The total is ${total}.'
+total = "{:,.2f}".format(round(subtotal * (1 + tax_rate), 2))
+out += f"The total is ${total}."
 print(out)

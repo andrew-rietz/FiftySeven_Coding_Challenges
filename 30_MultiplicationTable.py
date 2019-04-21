@@ -1,4 +1,4 @@
-'''
+"""
 
 Create a program that generates multiplcation tables
 for the numbers 0 through 12.
@@ -17,11 +17,14 @@ Constraint
 ___________________
 Use a nested loop to complete this program
 
-'''
+"""
+
+
 def main():
 
-    for num1 in range(0,13):
-        for num2 in range(0,13):
-            print(f'{num1} x {num2} = {num1 * num2}')
+    for num1 in range(0, 13):
+        for num2 in range(0, 13):
+            print(f"{num1} x {num2} = {num1 * num2}")
+
 
 main()

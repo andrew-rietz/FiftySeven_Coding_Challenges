@@ -1,4 +1,4 @@
-'''
+"""
 
 Sometimes input you collect will need to be filtered
 down. Data structures and loops can make this
@@ -28,14 +28,15 @@ feature.
 encapsulate the logic for this. The function
 takes in the old array and returns the new array.
 
-'''
+"""
+
 
 def filterEvenNumbers(numbers):
     evenNumbers = []
     removedValues = []
     for character in numbers:
         try:
-            character = (int(character))
+            character = int(character)
             if character % 2 == 0:
                 evenNumbers.append(str(character))
             else:
@@ -45,14 +46,17 @@ def filterEvenNumbers(numbers):
 
     return (evenNumbers, removedValues)
 
+
 def main():
-    userInput = input('Enter a list of numbers, separated by spaces: ')
-    numbers = userInput.split(' ')
+    userInput = input("Enter a list of numbers, separated by spaces: ")
+    numbers = userInput.split(" ")
 
     (evenNumbers, removedValues) = filterEvenNumbers(numbers)
 
-    print(f'''The even numbers are {', '.join((evenNumbers))}.
-The removed values are {', '.join((removedValues))}.''')
+    print(
+        f"""The even numbers are {', '.join((evenNumbers))}.
+The removed values are {', '.join((removedValues))}."""
+    )
 
 
 main()

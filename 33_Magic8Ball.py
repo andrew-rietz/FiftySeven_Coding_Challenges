@@ -1,4 +1,4 @@
-'''
+"""
 
 Arrays are great for storing possible responses from
 a program. If you combine that with a random number
@@ -22,16 +22,16 @@ The value should be chosen randomly using a pseudo
 random number generator. Store the possible choices in
 a list and select one at random
 
-'''
+"""
+
+
 def main():
     from random import randrange
 
-    responses = [
-                'Yes', 'No', 'Maybe',
-                'Ask again later'
-                ]
+    responses = ["Yes", "No", "Maybe", "Ask again later"]
 
     userQuestion = input("What's your question? ")
     print(responses[randrange(len(responses))])
+
 
 main()

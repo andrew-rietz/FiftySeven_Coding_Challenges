@@ -1,4 +1,4 @@
-'''
+"""
 
 Working with multiple inputs and currency can
 introduce some tricky precision issues.
@@ -33,35 +33,37 @@ out the output
 Be sure you explicitly convert input to numerical data
 before doing any calcluations.
 
-'''
+"""
 
 price = {}
 qty = {}
 subtotal = 0
 
-'Tax rate is set as a constant 5.5%'
+"Tax rate is set as a constant 5.5%"
 tax_rate = 0.055
 
-for item in range(1,4):
-    p = input(f'Enter the price of item {item}: ')
-    price[item] = round(float(p),2)
+for item in range(1, 4):
+    p = input(f"Enter the price of item {item}: ")
+    price[item] = round(float(p), 2)
 
-    q = input(f'Enter the quantity of item {item}: ')
-    qty[item] = round(float(q),2)
+    q = input(f"Enter the quantity of item {item}: ")
+    qty[item] = round(float(q), 2)
 
     subtotal += price[item] * qty[item]
 
-subtotal = round(subtotal,2)
-tax = round(subtotal * tax_rate,2)
-total = round(subtotal + tax,2)
+subtotal = round(subtotal, 2)
+tax = round(subtotal * tax_rate, 2)
+total = round(subtotal + tax, 2)
 
-subtotal = '{:.2f}'.format(subtotal)
-tax = '{:.2f}'.format(tax)
-total = '{:.2f}'.format(total)
+subtotal = "{:.2f}".format(subtotal)
+tax = "{:.2f}".format(tax)
+total = "{:.2f}".format(total)
 
 
-print(f'''\
+print(
+    f"""\
 Subtotal: ${subtotal}
 Tax: ${tax}
 Total: ${total}\
-''')
+"""
+)

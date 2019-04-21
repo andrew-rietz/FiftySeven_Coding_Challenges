@@ -1,4 +1,4 @@
-'''
+"""
 
 The 'Hello, Word' program is the first program
 you learn to write in many language, but it
@@ -19,8 +19,8 @@ ___________________
 Keep the input, string concatenation, and
 output separate
 
-'''
+"""
 
-name = input('What is your name? ')
-s = f'Hello, {name}, nice to meet you!'
+name = input("What is your name? ")
+s = f"Hello, {name}, nice to meet you!"
 print(s)

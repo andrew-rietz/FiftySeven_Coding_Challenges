@@ -1,4 +1,4 @@
-'''
+"""
 
 Simple interest is something you use only when
 making a quick guess. Most investments use a
@@ -45,23 +45,25 @@ Ensure the fractions of a cent are rounded up to the
 next penny.
 Ensure the output is formatted as money
 
-'''
+"""
 
 import math
 
-'Create a constant to convert %s'
+"Create a constant to convert %s"
 conv_pct = 100
 
-principal = float(input('What is the principal amount? '))
-rate = float(input('What is the rate? '))
-years = float(input('What is the number of years? '))
-n = float(input('What is the number of times the interest is compounded per year? '))
+principal = float(input("What is the principal amount? "))
+rate = float(input("What is the rate? "))
+years = float(input("What is the number of years? "))
+n = float(input("What is the number of times the interest is compounded per year? "))
 
-accrued = round(principal * (1+(rate/conv_pct/n)) ** (n * years),2)
-accrued = '{:,.2f}'.format(accrued)
-principal = '{:,.2f}'.format(principal)
+accrued = round(principal * (1 + (rate / conv_pct / n)) ** (n * years), 2)
+accrued = "{:,.2f}".format(accrued)
+principal = "{:,.2f}".format(principal)
 
-print(f'''
+print(
+    f"""
 ${principal} invested at {rate}% for {years} years
 compounded {n} times per year is ${accrued}.
-''')
+"""
+)

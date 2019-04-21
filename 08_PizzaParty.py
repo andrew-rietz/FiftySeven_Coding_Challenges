@@ -1,4 +1,4 @@
-'''
+"""
 
 Division isn't always exact, and sometimes you'll
 write programs that will need to deal with the
@@ -21,17 +21,19 @@ How many pizzas do you have? 2
 Each person gets 2 pieces of pizza.
 There are 0 leftover pieces.
 
-'''
+"""
 
-people = int(input('How many people? '))
-pizzas = int(input('How many pizzas do you have? '))
-slices = int(input('How many slices per pizza? '))
+people = int(input("How many people? "))
+pizzas = int(input("How many pizzas do you have? "))
+slices = int(input("How many slices per pizza? "))
 
 pieces = (pizzas * slices) // people
 leftover = (pizzas * slices) % people
 
-print(f'''
+print(
+    f"""
 {people} people with {pizzas} pizzas.
 Each person gets {pieces} pieces of pizza.
 There are {leftover} leftover pieces.\
-''')
+"""
+)

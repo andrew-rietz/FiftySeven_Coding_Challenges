@@ -1,4 +1,4 @@
-'''
+"""
 
 Using functions to abstract the logic away from the
 rest of your code makes it easier to read and easier
@@ -28,7 +28,8 @@ and retursn True or False. Invoke this function from
 your main program.
 Check that both words are the same length
 
-'''
+"""
+
 
 def isAnagram(str1, str2):
     l1 = [c for c in str1]
@@ -43,13 +44,15 @@ def isAnagram(str1, str2):
 
     return len(l1) == len(l2)
 
+
 def main():
     print("Enter two strings and I'll tell you if they're anagrams.\n")
-    str1 = str(input('Enter the first string: '))
-    str2 = str(input('Enter the second string: '))
+    str1 = str(input("Enter the first string: "))
+    str2 = str(input("Enter the second string: "))
 
-    out = 'are' if isAnagram(str1, str2) else 'are not'
+    out = "are" if isAnagram(str1, str2) else "are not"
     print(f'"{str1}" and "{str2}" {out} anagrams.')
 
-#Application entry -- call main()
+
+# Application entry -- call main()
 main()
