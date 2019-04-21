@@ -56,11 +56,6 @@ if bmi >= 18.5 and bmi <= 25:
     out = "You are within the ideal weight range."
 else:
     over_under = "over" if bmi > 25 else "under"
-    out = f"You are {over_under}weight. You should see your doctor."
+    out = f"You are {over_under} weight. You should see your doctor."
 
-print(
-    f"""
-Your BMI is {'{:.1f}'.format(bmi)}.
-"""
-    + out
-)
+print(f"Your BMI is {'{:.1f}'.format(bmi)}. " + out)

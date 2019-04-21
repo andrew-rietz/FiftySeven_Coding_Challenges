@@ -50,7 +50,6 @@ accrued = "{:,.2f}".format(accrued)
 principal = "{:,.2f}".format(principal)
 
 print(
-    f"""
-    After {years} years at {rate}%, the initial investment of ${principal} will be worth ${accrued}/
-    """
+    f"After {years} years at {rate}%, the initial investment of "
+    f"${principal} will be worth ${accrued}"
 )

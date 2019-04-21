@@ -54,5 +54,4 @@ def main():
     print(f'"{str1}" and "{str2}" {out} anagrams.')
 
 
-# Application entry -- call main()
 main()

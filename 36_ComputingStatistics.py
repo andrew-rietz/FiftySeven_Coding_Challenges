@@ -37,7 +37,7 @@ Numbers: 100, 200, 1000, 300
 The average is 400.
 The minmum is 100.
 The maximum is 1000.
-The standard deviation is 400.25
+The standard deviation is 353.55
 
 --> Note: std dev calculated above seems incorrect
 ___________________
@@ -93,13 +93,11 @@ def main():
     printNumbers = [str(number) for number in numbers]
 
     print(
-        f"""\
-Numbers: {', '. join(printNumbers)}
-The average is {meanVal}.
-The minimum is {smallestNumber}.
-The maximum is {largestNumber}.
-The standard deviation is {standardDeviation}\
-    """
+        f"Numbers: {', '. join(printNumbers)}\n"
+        f"The average is {meanVal}.\n"
+        f"The minimum is {smallestNumber}.\n"
+        f"The maximum is {largestNumber}.\n"
+        f"The standard deviation is {standardDeviation}"
     )
 
 
