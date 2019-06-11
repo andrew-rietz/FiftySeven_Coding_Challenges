@@ -36,6 +36,28 @@ from urllib.parse import urlparse
 API_STRING = f"https://{config.fb_PROJECT_ID}.firebaseio.com/urllib.json"
 URL_BASE = "rietz"
 
+fb_CODE_VALUES = {
+    ".":"%`p",
+    "$":"%`d",
+    "[":"%`l",
+    "]":"%`r",
+    "#":"%`h",
+    "/":"%`s",
+}
+
+"""
+NOTE:
+Firebase does not allow the following characters in keys:
+. (period)
+$ (dollar sign)
+[ (left square bracket)
+] (right square bracket)
+# (hash or pound sign)
+/ (forward slash)
+
+Will need to create an encoder or find another persistent store
+"""
+
 class URL_Store():
     def __init__(self):
         self.long_urls = {}
@@ -45,6 +67,30 @@ class URL_Store():
     def __str__(self):
         return "URL Store object"
 
+    def key_encode(self, plain_key):
+        encoded_key = plain_key
+        for plain_text, encoded_value in fb_CODE_VALUES.items():
+            encoded_key = encoded_key.replace(plain_text, encoded_value)
+        return encoded_key
+
+    def dict_encode(self, plain_dict):
+        encoded_dict = {}
+        for plain_key, value in plain_dict.items():
+            encoded_dict[self.key_encode(plain_key)] = value
+        return encoded_dict
+
+    def key_decode(self, encoded_key):
+        plain_key = encoded_key
+        for plain_text, encoded_value in fb_CODE_VALUES.items():
+            plain_key = plain_key.replace(encoded_value, plain_text)
+        return plain_key
+
+    def dict_decode(self, encoded_dict):
+        plain_dict = {}
+        for encoded_key, value in encoded_dict.items():
+            plain_dict[self.key_decode(encoded_key)] = value
+        return plain_dict
+
     def fetch(self):
         fetch_data = requests.get(API_STRING)
         if fetch_data.status_code != 200:
@@ -53,28 +99,19 @@ class URL_Store():
             return "No existing data"
         else:
             urls_stats = fetch_data.json()
-            self.long_urls = urls_stats["long_urls"]
-            self.short_urls = urls_stats["short_urls"]
+            self.long_urls = self.dict_decode(urls_stats["long_urls"])
+            self.short_urls = self.dict_decode(urls_stats["short_urls"])
             self.next_tag = urls_stats["next_tag"]
             return "Success"
 
     def push(self):
-        url_data = {"urllib":{
-            "long_urls":self.long_urls,
-            "short_urls":self.short_urls,
+        url_data = {
+            "long_urls":self.dict_encode(self.long_urls),
+            "short_urls":self.dict_encode(self.short_urls),
             "next_tag":self.next_tag,
-            }
         }
-        # print(url_data)
         payload = json.dumps(url_data)
-        payload = json.dumps({
-            "test":{
-                "var1":1,
-                "var2":2,
-            }
-        })
         print(json.dumps(url_data, indent = 4))
-        print(json.dumps({"test":{"var1":1,"var2":2,}},indent = 4))
         post_data = requests.put(API_STRING, payload)
         if post_data.status_code != 200:
             return "Error fetching data from server. Please try again later."
@@ -102,23 +139,19 @@ class URL_Store():
         valid_netloc = set(string.ascii_letters + string.digits + "-.")
 
         if url_comps.scheme not in valid_schemes:
-            print("Invalid scheme")
+            print(f"Invalid scheme - perhaps you meant https://{long_url}")
             return False
         if set(url_comps.netloc) > valid_netloc:
-            print("Invalid netloc")
+            print("Invalid netloc - unexpected characters detected")
             return False
-
         return True
-
-    def format_url(self, long_url):
-        pass
 
     def add_short_url(self, long_url):
 
         if long_url in self.long_urls.keys():
-            return "URL Already Exists (long)"
+            return f"URL Already Exists. The shortened URL is: {self.long_urls[long_url]}"
         elif long_url in self.short_urls.keys():
-            return "URL Already Exists (short)"
+            return f"URL Already Exists. The long URL is: {self.short_urls[short_url]}"
 
         short_url = URL_BASE + f"/{self.next_tag}"
         self.next_tag += 1
