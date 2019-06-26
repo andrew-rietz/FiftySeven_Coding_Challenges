@@ -1,26 +1,38 @@
 import unittest
+import unittest.mock
 import io
 from contextlib import redirect_stdout
 import HelloWorld
 
-# @patch("builtins.input", lambda *args: "andrew")
-# def test_main_valid(self):
-#     evaluated = str(HelloWorld.main())
-#     self.assertEqual(evaluated, "Hello, Andrew, nice to meet you!")
-#
-# if __name__ == "__main__":
-#     unittest.main()
+class IntegrationTests(unittest.TestCase):
 
+    @unittest.mock.patch("builtins.input", lambda *args: "andrew")
+    def test_main_valid(self):
+        expected_result = "Hello, Andrew, nice to meet you!"
+        print_output = io.StringIO()
+        with redirect_stdout(print_output):
+            HelloWorld.main()
+            test_val = print_output.getvalue().strip()
 
-def test_main_valid():
-    print_output = io.StringIO()
-    with redirect_stdout(print_output):
-        main_output = HelloWorld.main()
-        print(f"main output: {main_output}")
-        # with unittest.mock.patch("builtins.input", lambda *args: "andrew"):
-        #     assert input() == "andrew"
-        #     print("Passed")
+        self.assertEqual(test_val, expected_result)
+        # assert test_val.strip() == expected_result
+        # print(f"Passed. '{input()}' >>> '{expected_result}'")
 
+    @unittest.mock.patch("builtins.input", lambda *args: "3van")
+    def test_main_invalid(self):
+        expected_result = "Sorry, please enter a valid name."
+        print_output = io.StringIO()
+        with redirect_stdout(print_output):
+            HelloWorld.main()
+            test_val = print_output.getvalue().strip()
 
+        self.assertEqual(test_val, expected_result)
+        # assert test_val.strip() == expected_result
+        # print(f"Passed. '{input()}' >>> '{expected_result}'")
 
-test_main_valid()
+# def main():
+#     test_main_valid()
+#     test_main_invalid()
+
+if __name__ == "__main__":
+    unittest.main()
