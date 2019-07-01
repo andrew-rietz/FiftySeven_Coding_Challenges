@@ -14,11 +14,18 @@ ___________________
 Constraints
 ___________________
 Be sure the output contains the original string
-Use a single output statement to construct the Output
+Use a single output statement to construct the output
 Use a built-in function to determine the length of
 the string
 
 """
 
-s = input("What is the input string? ")
-print(f"{s} has {len(s)} characters.")
+def n_characters(word):
+    return len(word)
+
+def main():
+    word = input("What is the input string? ")
+    print(f"{word} has {n_characters(word)} characters.")
+
+if __name__ == "__main__":
+    main()
