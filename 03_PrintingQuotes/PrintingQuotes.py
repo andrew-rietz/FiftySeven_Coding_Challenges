@@ -29,7 +29,19 @@ Use string concatenation instead.
 
 """
 
-quote = input("What is the quote? ")
-author = input("Who said it? ")
+def get_inputs():
+    user_inputs = {
+        "quote": "",
+        "author": "",
+    }
+    user_inputs["quote"] = input("What is the quote? ")
+    user_inputs["author"] = input("Who said it? ")
 
-print(f'{author} says, "{quote}"')
+    return user_inputs
+
+def main():
+    user_inputs = get_inputs()
+    print(user_inputs["author"] + " says, \"" + user_inputs["quote"] +"\"")
+
+if __name__ == "__main__":
+    main()
