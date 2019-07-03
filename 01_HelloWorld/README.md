@@ -4,4 +4,5 @@ Create a program that prompts for your name and prints a greeting using your nam
 
 #### Example Output
 What is your name? Brian
+
 Hello, Brian, nice to meet you!

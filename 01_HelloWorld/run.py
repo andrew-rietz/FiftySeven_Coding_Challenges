@@ -1,3 +1,3 @@
-from HelloWorld import HelloWorld
+from helloworld import hello_world
 
-HelloWorld.main()
+hello_world.main()

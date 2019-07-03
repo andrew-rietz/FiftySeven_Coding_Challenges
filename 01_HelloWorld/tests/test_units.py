@@ -1,25 +1,17 @@
 import unittest
+import unittest.mock
 
-from context import HelloWorld
+from tests.context import hello_world
 
 class HelloWorldTests(unittest.TestCase):
+    @unittest.mock.patch("builtins.input", lambda *args: "andrew")
+    def setUp(self):
+        self.greet = hello_world.Greeting()
 
     def test_hello(self):
         self.assertEqual(
-            HelloWorld.hello("andrew"),
+            self.greet.hello(),
             "Hello, Andrew, nice to meet you!",
-        )
-
-    def test_is_alpha_true(self):
-        self.assertEqual(
-            HelloWorld.is_alpha("andrew"),
-            True,
-        )
-
-    def test_is_alpha_false(self):
-        self.assertEqual(
-            HelloWorld.is_alpha("3van"),
-            False,
         )
 
 if __name__ == "__main__":
