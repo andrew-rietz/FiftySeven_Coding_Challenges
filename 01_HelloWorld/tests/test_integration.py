@@ -1,8 +1,10 @@
+from contextlib import redirect_stdout
+
 import unittest
 import unittest.mock
 import io
-from contextlib import redirect_stdout
-import HelloWorld
+
+from context import HelloWorld
 
 class IntegrationTests(unittest.TestCase):
 
