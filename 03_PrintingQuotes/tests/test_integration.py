@@ -2,7 +2,8 @@ import unittest
 import unittest.mock
 import io
 from contextlib import redirect_stdout
-import PrintingQuotes
+
+from tests.context import printing_quotes
 
 class IntegrationTests(unittest.TestCase):
 
@@ -14,7 +15,7 @@ class IntegrationTests(unittest.TestCase):
         expected_result = "Obi-Wan Kenobi says, \"These aren't the droids you're looking for\""
         print_output = io.StringIO()
         with redirect_stdout(print_output):
-            PrintingQuotes.main()
+            printing_quotes.main()
             test_val = print_output.getvalue().strip()
 
         self.assertEqual(test_val, expected_result)
