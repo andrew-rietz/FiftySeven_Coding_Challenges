@@ -1,6 +1,15 @@
 from datetime import datetime
 
 class Calculator():
+    """
+    Representation of a retirement calculator
+    Attributes:
+        year                (datetime)
+        age                 (int)
+        retirement_age      (int)
+        years_to_retire     (int)
+        retirement_year     (datetime)
+    """
     def __init__(self):
         self.year = datetime.date(datetime.today()).year
         self.age = int(input("What is your current age? "))

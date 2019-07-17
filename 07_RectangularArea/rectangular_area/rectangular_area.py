@@ -1,4 +1,10 @@
 class Calculator():
+    """
+    Representation of an area calculator
+    Attributes:
+        len         (float)
+        width       (float)
+    """
     # Conversion factor for ft2 to m2
     IMPERIAL_TO_METRIC = 0.09290304
 
