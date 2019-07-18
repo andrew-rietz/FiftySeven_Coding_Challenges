@@ -11,8 +11,8 @@ in the example output.
 
 #### Example Output
 What is the quote? These aren't the droids you're
-looking for.
-Who said it? Obi-Wan Kenobi
+looking for.  
+Who said it? Obi-Wan Kenobi  
 Obi-wan Kenobi says, "These aren't the droids
 you're looking for."
 
