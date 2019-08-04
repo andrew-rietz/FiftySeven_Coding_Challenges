@@ -1,0 +1,4 @@
+include text_sharing/schema.sql
+graft text_sharing/static
+graft text_sharing/templates
+global-exclude *.pyc

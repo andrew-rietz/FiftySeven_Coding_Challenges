@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>{% block title %}Snippets{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for("snippets.create") }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for snippet in snippets %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ snippet["title"] }}</h1>
+          <div class="about">
+            by {{ snippet["username"] }} on {{ snippet["created"].strftime("%Y-%m-%d") }}
+          </div>
+        </div>
+        <a class="action" href="{{ url_for('snippets.view', id=snippet['id']) }}">View</a>
+      </header>
+      <p class="body">{{ snippet["body"] }}</p>
+    </article>
+    <!--
+    `loop.last` is a special variable inside Jinja for loops
+    -->
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

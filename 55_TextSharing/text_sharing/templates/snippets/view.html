@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ snippet['title'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="snippet">
+    <label for="title">Title</label>
+    <input disabled name="title" id="title" style="background-color:gainsboro;"
+      value="{{ request.form['title'] or snippet['title'] }}" required>
+    <label for="body">Body</label>
+    <textarea disabled style="background-color:gainsboro;" name="body"
+    id="body">{{ request.form['body'] or snippet['body'] }}</textarea>
+  </form>
+  <hr>
+  <form action="{{ url_for('snippets.edit', id=snippet['id']) }}" method="get">
+    <input type="submit" value="Edit">
+  </form>
+{% endblock %}
