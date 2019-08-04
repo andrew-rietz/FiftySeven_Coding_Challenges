@@ -68,3 +68,12 @@ use psycopg2.
 ```
 pip install psycopg2
 ```
+
+
+***
+## Resources
+[Flask Official Docs](https://flask.palletsprojects.com/en/1.1.x/tutorial/factory/)
+[Explore Flask Docs](http://exploreflask.com/en/latest/index.html)
+[PSQL and psycopg2 Basics](https://medium.com/@gitaumoses4/python-and-postgresql-without-orm-6e9d7fc9a38e)
+[PSQL and psycopg2 Examples](https://hackersandslackers.com/psycopg2-postgres-python-the-old-fashioned-way/)
+[Deploying a Flask App](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
