@@ -13,9 +13,9 @@ def check_legal_driver(age, country):
         "UNITED STATES": 16,
         "USA": 16,
         "US": 16,
-        "CANADA": 16,
-        "CA": 16,
-        "CDN": 16,
+        "MEXICO": 18,
+        "MX": 18,
+        "MEX": 18,
     }
     check = "aren't" if age < valid_age_by_country[country.upper()] else "are"
     return f"You {check} old enough to legally drive in {country}."
@@ -46,7 +46,7 @@ def main():
         prompt="What is your age?",
         err_msg="Please enter a numeric value greater than or equal to zero."
     )
-    print(check_legal_driver(age, "USA"))
+    print(check_legal_driver(age, "MEX"))
 
 if __name__ == "__main__":
     main()

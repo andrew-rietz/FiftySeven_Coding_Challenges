@@ -39,8 +39,8 @@ class GetPositiveNumberTests(unittest.TestCase):
 class CheckLegalDriverTests(unittest.TestCase):
 
     def test_too_young(self):
-        expected_result = "You aren't old enough to legally drive in CDN."
-        self.assertEqual(check_legal_driver(2, "CDN"), expected_result)
+        expected_result = "You aren't old enough to legally drive in MEX."
+        self.assertEqual(check_legal_driver(17, "MEX"), expected_result)
 
 
 if __name__ == "__main__":
