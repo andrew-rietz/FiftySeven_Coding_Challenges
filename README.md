@@ -7,7 +7,9 @@ Challenges completed in Python 3.
 
 WIP:
 
-Now that we’re through most of the challenges, will restructure repo so that it’s more straightforward to find each challenge, and general categories for each
+Now that we’re through most of the challenges, will restructure repo so that it’s more straightforward to find each challenge, and general categories for each.  
+
+Also adding testing and better documentation to each challenge as I work through and improve on the code from my first pass.
 
 #### Input, Processing, and Output
 [01 -- Hello World](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c01_HelloWorld)  
