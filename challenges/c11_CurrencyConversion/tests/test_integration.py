@@ -1,18 +1,23 @@
+import io
+import os
+import sys
 import unittest
 import unittest.mock
-import io
-from contextlib import redirect_stdout
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from currency_conversion import currency_conversion
-    else:
-        from ..currency_conversion import currency_conversion
-else:
-    from currency_conversion import currency_conversion
+from contextlib import contextmanager
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from currency_conversion import currency_conversion
+
+@contextmanager
+def captured_output():
+    new_out, new_err = io.StringIO(), io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    try:
+        sys.stdout, sys.stderr = new_out, new_err
+        yield sys.stdout, sys.stderr
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
 
 class CurrencyConverterIntegrationTest(unittest.TestCase):
 
@@ -24,10 +29,10 @@ class CurrencyConverterIntegrationTest(unittest.TestCase):
             f"81.0 euros at an exchange rate of " +
             f"137.51 is 111.38 U.S. dollars."
         )
-        print_output = io.StringIO()
-        with redirect_stdout(print_output):
+
+        with captured_output() as (outputs, errors):
             currency_conversion.main()
-            test_val = print_output.getvalue().strip()
+            test_val = outputs.getvalue().strip()
 
         self.assertEqual(expected_result, test_val)
 

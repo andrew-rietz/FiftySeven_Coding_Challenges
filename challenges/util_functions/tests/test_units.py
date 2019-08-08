@@ -3,14 +3,13 @@ Unit tests for the utility functions
 """
 
 import io
+import os
 import sys
 import unittest
 import unittest.mock
 
-from tests.context import utils
-from utils.user_inputs import (
-    get_string_in_list, get_positive_number, get_any_number
-)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.user_inputs import get_string_in_list, get_positive_number, get_any_number
 
 class GetStringInListTests(unittest.TestCase):
     """Tests the function that prompts the user for a text response"""
@@ -82,7 +81,7 @@ class GetPositiveNumberTests(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
 class GetAnyNumberTests(unittest.TestCase):
-    """Tests the function that prompts user for a positive number"""
+    """Tests the function that prompts user for any number"""
 
     def setUp(self):
         stdout_trap = io.StringIO()

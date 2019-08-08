@@ -1,11 +1,15 @@
+"""
+Defines and implements a madlib class
+"""
 class Madlib():
     """
-    A representation of a madlib
+    A representation of a madlib generator
+
     Attributes:
-        noun        (string)
-        verb        (string)
-        adjective   (string)
-        adverb      (string)
+        noun: A string describing some sort of noun
+        verb: A string defining some sort of verb
+        adjective: A string defining some sort of adjective
+        adverb: A string defining some sort of adverb
     """
 
     def __init__(self):

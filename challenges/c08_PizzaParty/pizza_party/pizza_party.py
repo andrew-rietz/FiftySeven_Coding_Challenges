@@ -1,10 +1,15 @@
+"""
+Defines and implements a class that helps share pizza equally
+"""
 class PizzaCalc():
     """
-    Representation of a calculator
+    Representation of a calculator that determines how many pieces of pizza each person
+    in a group can have based on the number of people, pizzas, and slices per pizza.
+
     Attributes:
-        people              (int)
-        pizzas              (int)
-        slices_per_pizza    (int)
+        people: An integer count of the number of people
+        pizzas: An integer count of the number of pizzas
+        slices_per_pizza: An integer count of the number of slices per pizza
     """
 
     def __init__(self):

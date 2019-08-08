@@ -1,19 +1,23 @@
-from contextlib import redirect_stdout
-
+import io
+import os
+import sys
 import unittest
 import unittest.mock
-import io
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from helloworld import hello_world
-    else:
-        from ..helloworld import hello_world
-else:
-    from helloworld import hello_world
+from contextlib import contextmanager
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from hello_world import hello_world
+
+@contextmanager
+def captured_output():
+    new_out, new_err = io.StringIO(), io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    try:
+        sys.stdout, sys.stderr = new_out, new_err
+        yield sys.stdout, sys.stderr
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
 
 
 class IntegrationTests(unittest.TestCase):
@@ -22,9 +26,10 @@ class IntegrationTests(unittest.TestCase):
     def test_main_valid(self):
         expected_result = "Hello, Andrew, nice to meet you!"
         print_output = io.StringIO()
-        with redirect_stdout(print_output):
+
+        with captured_output() as (outputs, errors):
             hello_world.main()
-            test_val = print_output.getvalue().strip()
+            test_val = outputs.getvalue().strip()
 
         self.assertEqual(test_val, expected_result)
 

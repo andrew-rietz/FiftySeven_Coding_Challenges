@@ -1,16 +1,10 @@
+import os
+import sys
 import unittest
 import unittest.mock
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from password_validation import password_validation
-    else:
-        from ..password_validation import password_validation
-else:
-    from password_validation import password_validation
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from password_validation import password_validation
 
 class PasswordValidationTests(unittest.TestCase):
 

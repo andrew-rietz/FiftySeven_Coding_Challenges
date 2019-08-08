@@ -1,19 +1,25 @@
+"""
+Defines and implements a simple point of sale system
+"""
 class Taxes():
-    """Represents a simple point of sale system
+    """
+    Represents a simple point of sale system that calculates sales tax based
+    on the shopper's state of residence
 
     Attributes:
-        taxable_states: (Dict) States and their associated tax rate
-            {ST: tax_rate, ST2: tax_rate2}
-        state: (String) State in which the customer resides
-        subtotal: (Float) Total purchase amount before taxes
+        taxable_states: (dict) States and their associated tax rate (i.e.,
+            {ST1: tax_rate1, ST2: tax_rate2}). For this exercise, only one
+            state is entered
+        state: (str) State in which the customer resides
+        subtotal: (float) Total purchase amount before taxes
     """
 
     def __init__(self):
         """Initializes the class -- prompts user for input"""
-        self.subtotal = float(input("What is the order amount? "))
         self.taxable_states = {
             "WI": 0.055,
         }
+        self.subtotal = float(input("What is the order amount? "))
         self.state = str(input("What is the state? "))
 
     def checkout(self):
@@ -21,6 +27,7 @@ class Taxes():
 
         Args:
             n/a -- uses class attributes
+
         Returns:
             order: (Dict) {
                 tax: (Float) total taxes due

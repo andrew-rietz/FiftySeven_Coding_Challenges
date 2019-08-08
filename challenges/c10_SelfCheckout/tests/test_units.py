@@ -1,22 +1,16 @@
+import os
+import sys
 import unittest
 import unittest.mock
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from self_checkout import self_checkout
-    else:
-        from ..self_checkout import self_checkout
-else:
-    from self_checkout import self_checkout
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from self_checkout import self_checkout
 
 class SelfCheckoutTests(unittest.TestCase):
 
     #@unittest.mock.patch("builtins.input")
     def setUp(self):
-        self.a_shopper = self_checkout.Shopper()
+        self.a_shopper = self_checkout.ShoppingCart()
         self.cart_item_1 = self.a_shopper.add_item(25, 2)
         self.cart_item_2 = self.a_shopper.add_item(10, 1)
 

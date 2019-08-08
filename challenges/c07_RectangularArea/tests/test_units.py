@@ -1,16 +1,10 @@
+import os
+import sys
 import unittest
 import unittest.mock
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from rectangular_area import rectangular_area
-    else:
-        from ..rectangular_area import rectangular_area
-else:
-    from rectangular_area import rectangular_area
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from rectangular_area import rectangular_area
 
 class RectangularAreaTests(unittest.TestCase):
 

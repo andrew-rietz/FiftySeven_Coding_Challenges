@@ -1,8 +1,12 @@
+"""
+Defines and implements a Greeting class that prompts for a name and says hello
+"""
 class Greeting():
     """
     A representation of a greeting
+
     Attributes:
-        name    (string)
+        name: A string indicating the name of an end user
     """
     def __init__(self):
         self.name = input("What is your name? ")

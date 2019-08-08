@@ -1,18 +1,23 @@
+import io
+import os
+import sys
 import unittest
 import unittest.mock
-import io
-from contextlib import redirect_stdout
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from simple_interest import simple_interest
-    else:
-        from ..simple_interest import simple_interest
-else:
-    from simple_interest import simple_interest
+from contextlib import contextmanager
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from simple_interest import simple_interest
+
+@contextmanager
+def captured_output():
+    new_out, new_err = io.StringIO(), io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    try:
+        sys.stdout, sys.stderr = new_out, new_err
+        yield sys.stdout, sys.stderr
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
 
 class SimpleInterestIntegrationTest(unittest.TestCase):
 
@@ -24,10 +29,10 @@ class SimpleInterestIntegrationTest(unittest.TestCase):
             "After 4 years at 4.30%, the initial investment of $1,500.00 "+
             "will be worth $1,758.00."
         )
-        print_output = io.StringIO()
-        with redirect_stdout(print_output):
+
+        with captured_output() as (outputs, errors):
             simple_interest.main()
-            test_val = print_output.getvalue().strip()
+            test_val = outputs.getvalue().strip()
 
         self.assertEqual(expected_result, test_val)
 

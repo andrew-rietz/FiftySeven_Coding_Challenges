@@ -1,13 +1,16 @@
+"""
+Defines and implements a class to help with area coverage calculations
+"""
 import math
 
 class PaintCalculator():
     """
     Representation of a paint coverage calculator
-    Attributes:
-    area        (int)
 
-    Constants:
-    GALLON_SF_COVERAGE  (int)
+    Attributes:
+        GALLON_SF_COVERAGE: An integer constant that describes the area (sq ft) a single can of
+            of paint can cover
+        area: An integer representing the area (sq ft) to be painted
     """
     # Conversion factor: one gallon == 350 sq ft
     GALLON_SF_COVERAGE = 350

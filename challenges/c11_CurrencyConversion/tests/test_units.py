@@ -1,17 +1,10 @@
-import io
+import os
+import sys
 import unittest
 import unittest.mock
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import os
-        import sys
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from currency_conversion import currency_conversion
-    else:
-        from ..currency_conversion import currency_conversion
-else:
-    from currency_conversion import currency_conversion
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from currency_conversion import currency_conversion
 
 class CurrencyConverterTests(unittest.TestCase):
 

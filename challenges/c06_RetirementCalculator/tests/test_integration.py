@@ -1,19 +1,24 @@
+from datetime import datetime
+import io
+import os
+import sys
 import unittest
 import unittest.mock
-import io
-from datetime import datetime
-from contextlib import redirect_stdout
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from retirement_calculator import retirement_calculator
-    else:
-        from ..retirement_calculator import retirement_calculator
-else:
-    from retirement_calculator import retirement_calculator
+from contextlib import contextmanager
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from retirement_calculator import retirement_calculator
+
+@contextmanager
+def captured_output():
+    new_out, new_err = io.StringIO(), io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    try:
+        sys.stdout, sys.stderr = new_out, new_err
+        yield sys.stdout, sys.stderr
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
 
 class RetirementCalcIntegrationTest(unittest.TestCase):
 
@@ -27,10 +32,10 @@ class RetirementCalcIntegrationTest(unittest.TestCase):
             f"You have {years_left} years left until you can retire.\n" +
             f"It's {current_year}, so you can retire in {current_year + years_left}."
         )
-        print_output = io.StringIO()
-        with redirect_stdout(print_output):
+
+        with captured_output() as (outputs, errors):
             retirement_calculator.main()
-            test_val = print_output.getvalue().strip()
+            test_val = outputs.getvalue().strip()
 
         self.assertEqual(expected_result, test_val)
 

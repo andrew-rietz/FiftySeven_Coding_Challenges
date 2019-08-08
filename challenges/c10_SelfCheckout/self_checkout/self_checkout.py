@@ -1,11 +1,14 @@
-class Shopper():
+"""
+Defines and implements a shopping cart / checkout class
+"""
+class ShoppingCart():
     """
     Representation of a shopper or shopping cart
-    Attributes:
-    cart                (dictionary)
 
-    Constants:
-    TAX_RATE            (float)
+    Attributes:
+        TAX_RATE: A float constant that represents the tax rate (5.5%)
+        cart: A dictionary the tracks the {'price', and 'quantity'} of items added
+            to the shopping cart
     """
     TAX_RATE = 0.055
 
@@ -13,6 +16,7 @@ class Shopper():
         self.cart = {}
 
     def add_item(self, price, qty):
+        """Adds items to the cart, tracking their price and quantity"""
         item_number = 1 if not self.cart else max(self.cart.keys())+1
         self.cart[item_number] = {
             "price": price,
@@ -21,6 +25,12 @@ class Shopper():
         return self.cart[item_number]
 
     def checkout(self):
+        """
+        Calculates the order subtotal, tax, and total amounts
+
+        Returns:
+            order: Dictionary that tracks the values for {'subtotal', 'tax', and 'total'}
+        """
         order = {"subtotal": 0, "tax": 0, "total": 0}
         for item, price_quantity in self.cart.items():
             order["subtotal"] += price_quantity["price"] * price_quantity["quantity"]
@@ -31,7 +41,11 @@ class Shopper():
         return order
 
 def main():
-    a_shopper = Shopper()
+    """
+    Instantiates a ShoppingCart class, adds items, and then checks out.
+    Order subtotal, tax, and total are printed to the console.
+    """
+    cart = ShoppingCart()
 
     while True:
         print("\nEnter a blank line to exit.")
@@ -39,9 +53,9 @@ def main():
         if not price:
             break
         quantity = input("Enter the quantity of an item: ")
-        a_shopper.add_item(float(price), float(quantity))
+        cart.add_item(float(price), float(quantity))
 
-    order_total = a_shopper.checkout()
+    order_total = cart.checkout()
     print(
         f"Subtotal: ${order_total['subtotal']:,.2f}\n" +
         f"Tax: ${order_total['tax']:,.2f}\n" +

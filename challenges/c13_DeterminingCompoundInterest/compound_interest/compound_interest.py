@@ -1,11 +1,20 @@
-class CompoundInterestCalculator():
-    """Represents a simple interest calculator
+"""
+Defines and implements a compound interest calculator class
+Extends the `InterestCalculator` class defined in c11
+"""
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-    Calculates the simple interest earned on an investment over a given period
+class CompoundInterestCalculator():
+    """Represents a compound interest calculator
+
+    Calculates the compound interest earned on an investment over a given period
     of time, and returns the total value of the investment at the end of the
     period.
 
     Attributes:
+        CONV_PCT: An integer constant to convert `interest rates` from numeric to decimal
         principal: A float representing the initial investment
         rate: A float representing the annual interest rate as a percentage
             (i.e., 15% should be entered as 15 not 0.15)
@@ -13,7 +22,6 @@ class CompoundInterestCalculator():
             invested
         n: Integer representing the number of times the interest rate is
             compounded per year
-        conv_pct: A constant to convert `interest rates` from numeric to decimal
     """
 
     def __init__(self):
@@ -45,11 +53,11 @@ class CompoundInterestCalculator():
         return investment
 
 def main():
-    simple_int = CompoundInterestCalculator()
-    investment = simple_int.calc()
+    compound_interest = CompoundInterestCalculator()
+    investment = compound_interest.calc()
     print(
-        f"${simple_int.principal:,.2f} invested at {simple_int.rate:,.2f}% for " +
-        f"{simple_int.years} years compounded {simple_int.n} times per year is " +
+        f"${compound_interest.principal:,.2f} invested at {compound_interest.rate:,.2f}% for " +
+        f"{compound_interest.years} years compounded {compound_interest.n} times per year is " +
         f"${investment:,.2f}."
     )
 

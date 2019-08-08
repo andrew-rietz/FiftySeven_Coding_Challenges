@@ -1,9 +1,13 @@
+"""
+Defines and implements a class that stores a quote and the author it's attributed to
+"""
 class Citation():
     """
-    A representation of a citation
+    A representation of a bibliographic citation
+
     Attributes:
-        quote   (string)
-        author  (string)
+        quote: A string indicating what the quote is
+        author: A string indicating who the author is
     """
     def __init__(self):
         self.quote = input("What is the quote? ")

@@ -1,9 +1,14 @@
+"""
+Defines and implements a class that performs simple arithmetic
+"""
 class Calculator():
     """
-    Representation of a calculator
+    Representation of a calculator that takes two numeric inputs and returns
+    the result of common arithmetic operations
+
     Attributes:
-        first_num   (float)
-        second_num  (float)
+        first_num: The first number for the calculation
+        second_num: The second number for the calculation
     """
 
     def __init__(self):

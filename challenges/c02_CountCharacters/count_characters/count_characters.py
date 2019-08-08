@@ -1,8 +1,12 @@
+"""
+Defines and implements a StringParser class that parses the number of characters in a string
+"""
 class StringParser():
     """
     A representation of a text parser
+
     Attributes:
-        text    (string)
+        text: A string to be parsed
     """
 
     def __init__(self):

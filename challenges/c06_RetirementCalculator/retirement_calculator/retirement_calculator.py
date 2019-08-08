@@ -1,14 +1,18 @@
+"""
+Defines and implements a retirement calculator class
+"""
 from datetime import datetime
 
 class Calculator():
     """
-    Representation of a retirement calculator
+    Representation of a retirement calculator that determines when an end user can retire 
+
     Attributes:
-        year                (datetime)
-        age                 (int)
-        retirement_age      (int)
-        years_to_retire     (int)
-        retirement_year     (datetime)
+        year: A datetime object representing the current year
+        age: An integer representing the end-user's current age
+        retirement_age: An integer representing the age at which end user wants to retire
+        years_to_retire: An integer representing the number of years until end user can retire
+        retirement_year: A datetime object representing the year in which end user can retire
     """
     def __init__(self):
         self.year = datetime.date(datetime.today()).year

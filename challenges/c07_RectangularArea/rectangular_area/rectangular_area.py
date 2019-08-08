@@ -1,9 +1,13 @@
+"""
+Defines and implements a square footage calculator class
+"""
 class Calculator():
     """
-    Representation of an area calculator
+    Representation of an area calculator that takes two numbers and multiplies them together
+
     Attributes:
-        len         (float)
-        width       (float)
+        len: A float indicating the length of a surface
+        width: A float indicating the width of a surface
     """
     # Conversion factor for ft2 to m2
     IMPERIAL_TO_METRIC = 0.09290304

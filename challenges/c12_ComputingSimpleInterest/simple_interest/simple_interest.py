@@ -1,3 +1,6 @@
+"""
+Defines and implements a simple interest calculator class
+"""
 class InterestCalculator():
     """Represents a simple interest calculator
 
@@ -6,12 +9,12 @@ class InterestCalculator():
     period.
 
     Attributes:
+        CONV_PCT: A constant to convert `rate` from numeric to decimal
         principal: A float representing the initial investment
         rate: A float representing the annual interest rate as a percentage
             (i.e., 15% should be entered as 15 not 0.15)
         years: An integer representing the number of years the principal is
             invested
-        conv_pct: A constant to convert `interest rates` from numeric to decimal
     """
 
     def __init__(self):

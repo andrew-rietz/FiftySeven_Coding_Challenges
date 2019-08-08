@@ -1,16 +1,10 @@
+import os
+import sys
 import unittest
 import unittest.mock
 
-if __name__ == '__main__':
-    if __package__ is None:
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        from tax_calculator import tax_calculator
-    else:
-        from ..tax_calculator import tax_calculator
-else:
-    from tax_calculator import tax_calculator
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tax_calculator import tax_calculator
 
 class TaxCalculatorWITests(unittest.TestCase):
 
