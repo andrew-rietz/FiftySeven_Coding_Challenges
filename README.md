@@ -29,3 +29,4 @@ Also adding testing and better documentation to each challenge as I work through
 [13 -- Determining Compound Interest](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c13_DeterminingCompoundInterest)  
 [14 -- Tax Calculator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c14_TaxCalculator)  
 [15 -- Password Validation](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c15_PasswordValidation)  
+[16 -- Legal Driving Age](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c16_LegalDrivingAge)  
