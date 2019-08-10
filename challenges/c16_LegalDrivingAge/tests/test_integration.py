@@ -23,11 +23,11 @@ class LegalDriveIntegrationTest(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_valid_driver(self, mock_inputs):
-        mock_inputs.side_effect = ["-9999", "Foo", "17", "USA"]
+        mock_inputs.side_effect = ["-9999", "Foo", "18", "MEX"]
 
         expected_result = (
             "Please enter a numeric value greater than or equal to zero. " * 2 +
-            "You are old enough to legally drive in USA."
+            "You are old enough to legally drive in MEX."
         )
 
         with captured_output() as (outputs, errors):
@@ -38,11 +38,11 @@ class LegalDriveIntegrationTest(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_invalid_young_driver(self, mock_inputs):
-        mock_inputs.side_effect = ["-9999", "Foo", "12", "USA"]
+        mock_inputs.side_effect = ["-9999", "Foo", "12", "MEX"]
 
         expected_result = (
             "Please enter a numeric value greater than or equal to zero. " * 2 +
-            "You aren't old enough to legally drive in USA."
+            "You aren't old enough to legally drive in MEX."
         )
 
         with captured_output() as (outputs, errors):
