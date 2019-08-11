@@ -178,7 +178,7 @@ class PersonalInventory():
             prompt="Enter the index of the item to delete. (or enter quit() to cancel):",
             err_msg="Enter a valid index.",
             allowed_vals=[str(index) for index in range(n_rows)],
-            exit="quit()"
+            exit_val="quit()"
         )
         if index_to_delete is None:
             print("Removal cancelled.")
@@ -236,7 +236,7 @@ def prompt():
         err_msg="Sorry, please enter a valid selection",
         allowed_vals=allowed_vals,
         case_sensitive=False,
-        exit="Exit"
+        exit_val="Exit"
     )
     return action.upper()
 
@@ -312,7 +312,7 @@ def _get_value():
         value = user_inputs.get_any_number(
             prompt="What is the item's value? (Or type quit() to exit)",
             err_msg="Sorry, that is not a valid value.",
-            exit="quit()"
+            exit_val="quit()"
         )
         if value is None:
             confirm = input(
