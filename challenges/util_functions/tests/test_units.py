@@ -40,6 +40,19 @@ class GetStringInListTests(unittest.TestCase):
         }
         self.assertEqual("foo", get_string_in_list(**named_args))
 
+    @unittest.mock.patch("builtins.input")
+    def test_exit(self, mock_inputs):
+        mock_inputs.side_effect = ["fo", "ba", "quit()", "baz"]
+        named_args = {
+            "prompt": "Select a value from the list.",
+            "err_msg": "Please enter a valid value.",
+            "allowed_vals": ["FOO", "BAR", "BAZ"],
+            "case_sensitive": False,
+            "exit_val": "quit()"
+        }
+        self.assertEqual(None, get_string_in_list(**named_args))
+
+
     def tearDown(self):
         sys.stdout = sys.__stdout__
 
@@ -69,13 +82,14 @@ class GetPositiveNumberTests(unittest.TestCase):
         self.assertEqual(10, get_positive_number(**named_args))
 
     @unittest.mock.patch("builtins.input")
-    def test_None_value(self, mock_inputs):
-        mock_inputs.side_effect = [None, 100]
+    def test_exit(self, mock_inputs):
+        mock_inputs.side_effect = ["fo", "ba", "quit()", "1"]
         named_args = {
             "prompt": "How many drinks have you had?",
-            "err_msg": "Please enter a numeric value."
+            "err_msg": "Please enter a numeric value.",
+            "exit_val": "quit()"
         }
-        self.assertEqual(100, get_positive_number(**named_args))
+        self.assertEqual(None, get_positive_number(**named_args))
 
     def tearDown(self):
         sys.stdout = sys.__stdout__
@@ -115,13 +129,34 @@ class GetAnyNumberTests(unittest.TestCase):
         self.assertEqual(0, get_any_number(**named_args))
 
     @unittest.mock.patch("builtins.input")
-    def test_None_value(self, mock_inputs):
-        mock_inputs.side_effect = [None, 100]
+    def test_exit_is_null_string(self, mock_inputs):
+        mock_inputs.side_effect = ["", 100, "asdf"]
         named_args = {
             "prompt": "How many drinks have you had?",
-            "err_msg": "Please enter a numeric value."
+            "err_msg": "Please enter a numeric value.",
+            "exit_val": "",
         }
-        self.assertEqual(100, get_any_number(**named_args))
+        self.assertEqual(None, get_any_number(**named_args))
+
+    @unittest.mock.patch("builtins.input")
+    def test_exit_is_None(self, mock_inputs):
+        mock_inputs.side_effect = [None, 100, "asdf"]
+        named_args = {
+            "prompt": "How many drinks have you had?",
+            "err_msg": "Please enter a numeric value.",
+            "exit_val": None,
+        }
+        self.assertEqual(None, get_any_number(**named_args))
+
+    @unittest.mock.patch("builtins.input")
+    def test_numeric_exit(self, mock_inputs):
+        mock_inputs.side_effect = ["-999", 100, "asdf"]
+        named_args = {
+            "prompt": "How many drinks have you had?",
+            "err_msg": "Please enter a numeric value.",
+            "exit_val": "-999"
+        }
+        self.assertEqual(None, get_any_number(**named_args))
 
     def tearDown(self):
         sys.stdout = sys.__stdout__
