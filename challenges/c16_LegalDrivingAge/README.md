@@ -21,4 +21,7 @@ What is your age? 35
 You are old enough to legally drive.
 
 ***
+> Note: Added some additional functionality: The program will now check the user's age against the legal driving age in a given country.
+
+***
 [Additional constraints and challenges available in the full text.](https://www.amazon.com/Exercises-Programmers-Challenges-Develop-Coding/dp/1680501224)
