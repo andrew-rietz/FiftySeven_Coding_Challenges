@@ -201,12 +201,16 @@ class PersonalInventory():
         print("Item removed.")
         return "Success"
 
-    def save(self):
+    def save(self, basedir=None, subdir="data", filename="local_storage.json"):
         """
         Saves the file to local persistent storage in the ./data folder
         """
+
+        if basedir is None:
+            basedir = os.path.dirname(os.path.abspath(__file__))
+
         filepath = (
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "local_storage.json")
+            os.path.join(basedir, subdir, filename)
         )
 
         with open(filepath, "w", encoding="utf-8") as local_file:

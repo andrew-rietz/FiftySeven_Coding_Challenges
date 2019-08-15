@@ -42,29 +42,86 @@ class PersonalInventoryClassTests(SetUpData):
     """Tests the methods of the PersonalInventory Class"""
 
     @unittest.mock.patch("builtins.input")
-    def class_method_test(self, func):
-        mock_inputs.side_effect = ["Foo", "Bar", "0.0"]
+    def class_method_test(self, func, args, side_effect, mock_inputs):
+        mock_inputs.side_effect = side_effect
         with captured_output() as (outputs, errors):
-            test_val = self.inv_class.func()
+            test_val = func(*args)
         return test_val
 
-    def test_PersonalInventoryClass__add_item2(self):
-        test_val = self.class_method_test(self.inv_class.add_item())
+    def test_PersonalInventoryClass__add_item(self):
+        test_val = self.class_method_test(self.inv_class.add_item, [], ["Foo", "Bar", "-99"])
         self.assertEqual("Success", test_val)
 
-    @unittest.mock.patch("builtins.input")
-    def test_PersonalInventoryClass__add_item(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", "Bar", "0.0"]
-        with captured_output() as (outputs, errors):
-            test_val = self.inv_class.add_item()
+    def test_PersonalInventoryClass__add_item__inventory(self):
+        self.class_method_test(self.inv_class.add_item, [], ["Foo", "Bar", "-99"])
+        new_inv = {
+            'item_name': ['Xbox One', 'Samsung TV', 'Foo'],
+            'serial': ['AXB124AXY', 'S40AZBDE4', 'Bar'],
+            'value': ['$399.00', '$599.99', '$-99.00']
+        }
+        self.assertEqual(new_inv, self.inv_class.inventory)
+
+    def test_PersonalInventoryClass__remove_item(self):
+        test_val = self.class_method_test(self.inv_class.remove_item, [], ["0"])
         self.assertEqual("Success", test_val)
 
-    @unittest.mock.patch("builtins.input")
-    def test_PersonalInventoryClass__latest_item_is_item(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", "Bar", "0.0"]
-        with captured_output() as (outputs, errors):
-            test_val = self.inv_class.add_item()
+    def test_PersonalInventoryClass__remove_item__inventory(self):
+        self.class_method_test(self.inv_class.remove_item, [], ["0"])
+        new_inv = {
+            'item_name': ['Samsung TV'],
+            'serial': ['S40AZBDE4'],
+            'value': ['$599.99']
+        }
+        self.assertEqual(new_inv, self.inv_class.inventory)
+
+    def test_PersonalInventoryClass__print_to_terminal__no_index(self):
+        test_val = self.class_method_test(self.inv_class.print_to_terminal, [False], [])
         self.assertEqual("Success", test_val)
+
+    def test_PersonalInventoryClass__print_to_terminal__no_index__terminal(self):
+        with captured_output() as (outputs, errors):
+            self.inv_class.print_to_terminal(False)
+        expected_terminal = (
+            "------------------------------------\n" +
+            "| item_name  |   serial  |  value  |\n" +
+            "------------------------------------\n" +
+            "| Xbox One   | AXB124AXY | $399.00 |\n" +
+            "| Samsung TV | S40AZBDE4 | $599.99 |\n" +
+            "------------------------------------"
+        )
+        self.assertEqual(expected_terminal, outputs.getvalue().strip())
+
+    def test_PersonalInventoryClass__print_to_terminal__with_index__terminal(self):
+        with captured_output() as (outputs, errors):
+            self.inv_class.print_to_terminal(True)
+        expected_terminal = (
+            "--------------------------------------------\n" +
+            "| index | item_name  |   serial  |  value  |\n" +
+            "--------------------------------------------\n" +
+            "| 0     | Xbox One   | AXB124AXY | $399.00 |\n" +
+            "| 1     | Samsung TV | S40AZBDE4 | $599.99 |\n" +
+            "--------------------------------------------"
+        )
+        self.assertEqual(expected_terminal, outputs.getvalue().strip())
+
+    def test_PersonalInventoryClass__save(self):
+        basedir = os.path.dirname(os.path.abspath(__file__))
+        with captured_output() as (outputs, errors):
+            test_val = self.inv_class.save(
+                basedir=basedir,
+                subdir="mock_data", filename="test_local_storage_saves.json"
+            )
+
+        # try opening the saved file and ensuring the output matches expectation
+        try:
+            filepath = os.path.join(basedir, "mock_data", "test_local_storage_saves.json")
+            with open(filepath, "r") as saved_file:
+                saved_file_contents = json.load(saved_file)
+            os.remove(filepath)
+        except FileNotFoundError:
+            saved_file_contents = None
+
+        self.assertEqual(saved_file_contents, self.inv_class.inventory)
 
 class AppFunctionsTests(SetUpData):
     """Tests the applcation functions defined in the app_functions"""
