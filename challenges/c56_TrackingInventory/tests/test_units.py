@@ -123,6 +123,50 @@ class PersonalInventoryClassTests(SetUpData):
 
         self.assertEqual(saved_file_contents, self.inv_class.inventory)
 
+    def test_PersonalInventoryClass__to_csv(self):
+        basedir = os.path.dirname(os.path.abspath(__file__))
+        with captured_output() as (outputs, errors):
+            test_val = self.inv_class.to_csv(
+                index=True, basedir=basedir, subdir="mock_data", filename="test_output.csv"
+            )
+
+        try:
+            filepath = os.path.join(basedir, "mock_data", "test_output.csv")
+            with open(filepath, "r") as test_output_file:
+                test_output = test_output_file.read()
+            os.remove(filepath)
+        except FileNotFoundError:
+            test_output = None
+
+        filepath = os.path.join(basedir, "mock_data", "expected.csv")
+        with open(filepath, "r") as expected_output_file:
+            expected_output = expected_output_file.read()
+
+        self.assertEqual(expected_output, test_output)
+
+    def test_PersonalInventoryClass__to_html(self):
+        basedir = os.path.dirname(os.path.abspath(__file__))
+        with captured_output() as (outputs, errors):
+            test_val = self.inv_class.to_html(
+                index=True, basedir=basedir, subdir="mock_data", filename="test_output.html"
+            )
+
+        try:
+            filepath = os.path.join(basedir, "mock_data", "test_output.html")
+            with open(filepath, "r") as test_output_file:
+                test_output = test_output_file.read()
+            os.remove(filepath)
+        except FileNotFoundError:
+            test_output = None
+
+        filepath = os.path.join(basedir, "mock_data", "expected.html")
+        with open(filepath, "r") as expected_output_file:
+            expected_output = expected_output_file.read()
+
+        self.assertEqual(expected_output, test_output)
+
+
+
 class AppFunctionsTests(SetUpData):
     """Tests the applcation functions defined in the app_functions"""
 

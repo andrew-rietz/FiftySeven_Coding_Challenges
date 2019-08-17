@@ -24,6 +24,11 @@ def startup(basedir=None, subdir="data", filename="local_storage.json"):
     Check for data in local storage. If it exists, load it into a new PersonalInventory
     class instance. Otherwise initiate a new, blank, instance of the same class.
 
+    Args:
+        basedir: (str) Absolute filepath for the directory the local json file is located within
+        subdir: (str) Optional subdirectory that the local json file is located within
+        filename: (str) Optional - name of the local json file
+
     Returns:
         inv: (obj) A PersonalInventory class object
     """
@@ -75,7 +80,9 @@ def perform_action(inventory, action):
             allowed_vals=["Y", "N"],
             case_sensitive=False,
         )
-        inventory.to_csv(index=(index.upper() == "Y"))
+        inventory.to_csv(
+            index=(index.upper() == "Y")
+        )
     elif action == "TO HTML":
         index = user_inputs.get_string_in_list(
             prompt=f"Do you want the index included? [Y/N]:",

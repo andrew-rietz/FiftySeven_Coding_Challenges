@@ -97,13 +97,16 @@ class PersonalInventory():
 
         return "Success"
 
-    def to_csv(self, index=False):
+    def to_csv(self, index=False, basedir=None, subdir="data", filename="personal_inventory.csv"):
         """
         Writes the table to an CSV document in the ./data folder. May include an index
         column if the user desires.
 
         Args:
             index: (bool) indicates whether the index should be printed as well
+            basedir: (str) Absolute filepath for the directory the local json file is located within
+            subdir: (str) Optional subdirectory that the local json file is located within
+            filename: (str) Optional - name of the local json file
         """
         working_inv = OrderedDict(self.inventory)
         if index:
@@ -111,10 +114,10 @@ class PersonalInventory():
 
         dimensions = _get_table_dimensions(working_inv)
 
-        filepath = (
-            os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         "data", "personal_inventory.csv")
-        )
+        if basedir is None:
+            basedir = os.path.dirname(os.path.abspath(__file__))
+
+        filepath = os.path.join(basedir, subdir, filename)
         with open(filepath, "w") as csv_file:
             field_names = list(working_inv.keys())
             writer = csv.DictWriter(csv_file, field_names)
@@ -129,13 +132,16 @@ class PersonalInventory():
         print("CSV File Created.")
         return "Success"
 
-    def to_html(self, index=False):
+    def to_html(self, index=False, basedir=None, subdir="data", filename="personal_inventory.html"):
         """
         Writes the table to an HTML document in the ./data folder. May include an index
         column if the user desires.
 
         Args:
             index: (bool) indicates whether the index should be printed as well
+            basedir: (str) Absolute filepath for the directory the local json file is located within
+            subdir: (str) Optional subdirectory that the local json file is located within
+            filename: (str) Optional - name of the local json file
         """
         working_inv = OrderedDict(self.inventory)
         if index:
@@ -145,10 +151,10 @@ class PersonalInventory():
         table_headers = _setup_headers(dimensions, working_inv, style="html")
         table_rows = _setup_body(dimensions, working_inv, style="html")
 
-        filepath = (
-            os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         "data", "personal_inventory.html")
-        )
+        if basedir is None:
+            basedir = os.path.dirname(os.path.abspath(__file__))
+
+        filepath = os.path.join(basedir, subdir, filename)
         with open(filepath, "w") as html_file:
             style = (
                 "<style>" +
@@ -204,6 +210,11 @@ class PersonalInventory():
     def save(self, basedir=None, subdir="data", filename="local_storage.json"):
         """
         Saves the file to local persistent storage in the ./data folder
+
+        Args:
+            basedir: (str) Absolute filepath for the directory the local json file is located within
+            subdir: (str) Optional subdirectory that the local json file is located within
+            filename: (str) Optional - name of the local json file
         """
 
         if basedir is None:
