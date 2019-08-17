@@ -80,9 +80,7 @@ def perform_action(inventory, action):
             allowed_vals=["Y", "N"],
             case_sensitive=False,
         )
-        inventory.to_csv(
-            index=(index.upper() == "Y")
-        )
+        inventory.to_csv(index=(index.upper() == "Y"))
     elif action == "TO HTML":
         index = user_inputs.get_string_in_list(
             prompt=f"Do you want the index included? [Y/N]:",
