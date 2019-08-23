@@ -18,6 +18,7 @@ that range, display an appropriate error message.
 Please enter the number of the month:  
 The name of the month is March.
 
+***
 >**NOTE:** Python doesn't support switch or case statements, so using a dictionary instead.
 
 ***
