@@ -1,5 +1,6 @@
 # 57_Coding_Challenges
-Pragmatic Programmer - Challenges to Develop Your Coding Skills
+Pragmatic Programmer - Challenges to Develop Your Coding Skills  
+[Additional details and constraints available in the full text.](https://www.amazon.com/Exercises-Programmers-Challenges-Develop-Coding/dp/1680501224)
 
 Challenges completed in Python 3.
 
@@ -30,3 +31,8 @@ Also adding testing and better documentation to each challenge as I work through
 [14 -- Tax Calculator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c14_TaxCalculator)  
 [15 -- Password Validation](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c15_PasswordValidation)  
 [16 -- Legal Driving Age](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c16_LegalDrivingAge)  
+[17 -- Blood Alcohol Calculator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c17_BloodAlcoholCalculator)  
+[18 -- Temperature Converter](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c18_TemperatureConverter)  
+[19 -- BMI Calculator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c19_BMICalculator)  
+[20 -- Multistate Sales Tax](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c20_MultistateSalesTax)  
+[21 -- Numbers to Names](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c21_NumbersToNames)  
