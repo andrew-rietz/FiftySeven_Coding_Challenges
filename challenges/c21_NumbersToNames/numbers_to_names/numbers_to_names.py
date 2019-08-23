@@ -30,12 +30,13 @@ def month_number_to_name(number):
         11: "November",
         12: "December",
     }
+    return numbers_names[number]
 
 def main():
-    num = user_inputs.get_string_in_list(
+    num = int(user_inputs.get_string_in_list(
         prompt="Please enter the number of the month (i.e., 1-12):",
         err_msg="Please enter a value between 1 and 12.",
         allowed_vals=[str(n) for n in range(1, 13)]
-    )
+    ))
     name = month_number_to_name(num)
     print(f"The name of the month is {name}.")
