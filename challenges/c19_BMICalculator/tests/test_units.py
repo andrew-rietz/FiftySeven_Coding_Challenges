@@ -1,4 +1,3 @@
-import io
 import sys
 import unittest
 import unittest.mock

@@ -1,10 +1,7 @@
-import io
 import os
 import sys
 import unittest
 import unittest.mock
-
-from contextlib import redirect_stdout
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from numbers_to_names import numbers_to_names
