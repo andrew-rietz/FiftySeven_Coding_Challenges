@@ -7,7 +7,7 @@ import os
 from contextlib import contextmanager
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from multistate_tax import multistate_tax
+from compare_numbers import compare_numbers
 
 @contextmanager
 def captured_output():
@@ -20,49 +20,34 @@ def captured_output():
         sys.stdout, sys.stderr = old_out, old_err
 
 
-class MultiStateSalesTaxTests(unittest.TestCase):
+class ComparingNumbersTests(unittest.TestCase):
     """Tests that the 'main' function works as expected"""
 
     @unittest.mock.patch("builtins.input")
-    def test_state_and_county_with_taxes(self, mock_inputs):
-        mock_inputs.side_effect = ["100", "WI", "Dunn"]
+    def test_8_is_max(self, mock_inputs):
+        # Note, need to include the exit case "" in order to exit input loop
+        mock_inputs.side_effect = ["3", "-100", "5.432", "8", ""]
 
         expected_result = (
-            "The tax is $5.40.\n" +
-            "The total is $105.40."
+            "The largest number is 8.0."
         )
 
         with captured_output() as (outputs, errors):
-            multistate_tax.main()
+            compare_numbers.main()
             test_val = outputs.getvalue().strip()
 
         self.assertEqual(expected_result, test_val)
 
     @unittest.mock.patch("builtins.input")
-    def test_state_with_taxes(self, mock_inputs):
-        mock_inputs.side_effect = ["100", "IL", "some_fake_county"]
+    def test_exit_case(self, mock_inputs):
+        mock_inputs.side_effect = [""]
 
         expected_result = (
-            "The tax is $8.00.\n" +
-            "The total is $108.00."
+            "Sorry, you must provide at least one number."
         )
 
         with captured_output() as (outputs, errors):
-            multistate_tax.main()
-            test_val = outputs.getvalue().strip()
-
-        self.assertEqual(expected_result, test_val)
-
-    @unittest.mock.patch("builtins.input")
-    def test_no_taxes(self, mock_inputs):
-        mock_inputs.side_effect = ["100", "CA", "some_fake_county"]
-
-        expected_result = (
-            "The total is $100.00."
-        )
-
-        with captured_output() as (outputs, errors):
-            multistate_tax.main()
+            compare_numbers.main()
             test_val = outputs.getvalue().strip()
 
         self.assertEqual(expected_result, test_val)

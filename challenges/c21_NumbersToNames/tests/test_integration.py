@@ -20,7 +20,7 @@ def captured_output():
         sys.stdout, sys.stderr = old_out, old_err
 
 
-class NumbersToNames(unittest.TestCase):
+class NumbersToNamesTests(unittest.TestCase):
     """Tests that the 'main' function works as expected"""
 
     @unittest.mock.patch("builtins.input")
