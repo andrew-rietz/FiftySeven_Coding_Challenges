@@ -217,3 +217,14 @@ def main():
 
     print("\n\nFinal Decision Tree:")
     tree.print_tree()
+
+    proceed = user_inputs.get_string_in_list(
+        prompt="Ready to proceed? [Y/N]:",
+        err_msg="Sorry, please enter a valid value",
+        allowed_vals=["y", "n"],
+        case_sensitive=False
+    )
+
+    if proceed == "y":
+        while True:
+            
