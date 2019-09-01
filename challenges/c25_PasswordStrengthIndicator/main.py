@@ -1,0 +1,3 @@
+from password_strength_indicator import password_strength_indicator
+
+password_strength_indicator.main()
