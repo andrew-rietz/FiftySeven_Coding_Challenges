@@ -1,0 +1,3 @@
+from months_to_pay_credit_card import months_to_pay_credit_card
+
+months_to_pay_credit_card.main()
