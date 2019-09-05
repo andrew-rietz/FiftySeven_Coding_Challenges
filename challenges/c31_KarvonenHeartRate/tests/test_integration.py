@@ -7,7 +7,7 @@ import os
 from contextlib import contextmanager
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from handling_bad_input import handling_bad_input
+from karvonen_heart_rate import karvonen_heart_rate
 
 @contextmanager
 def captured_output():
@@ -20,20 +20,30 @@ def captured_output():
         sys.stdout, sys.stderr = old_out, old_err
 
 
-class HandlingBadInputTests(unittest.TestCase):
+class KarvonenCalculatorTests(unittest.TestCase):
     """Tests that the 'main' function works as expected"""
 
     @unittest.mock.patch("builtins.input")
     def test_sum_is_(self, mock_inputs):
-        mock_inputs.side_effect = ["0", "ABC", "4"]
+        mock_inputs.side_effect = ["65", "22"]
 
         expected_result = (
-            "It will take 18.0 years to double your initial investment."
+            "Intensity | Target Heart Rate \n" +
+            "----------|------------------ \n" +
+            "   55%    |     138.2 bpm     \n" +
+            "   60%    |     144.8 bpm     \n" +
+            "   65%    |     151.4 bpm     \n" +
+            "   70%    |     158.1 bpm     \n" +
+            "   75%    |     164.8 bpm     \n" +
+            "   80%    |     171.4 bpm     \n" +
+            "   85%    |     178.1 bpm     \n" +
+            "   90%    |     184.7 bpm     \n" +
+            "   95%    |     191.3 bpm     \n"
         )
 
         with captured_output() as (outputs, errors):
-            handling_bad_input.main()
-            test_val = outputs.getvalue().strip().split("\n")[-1]
+            karvonen_heart_rate.main()
+            test_val = outputs.getvalue()
 
         self.assertEqual(expected_result, test_val)
 

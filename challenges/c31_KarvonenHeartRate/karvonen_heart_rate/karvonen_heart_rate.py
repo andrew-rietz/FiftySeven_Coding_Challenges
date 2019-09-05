@@ -106,7 +106,7 @@ class KarvonenCalculator():
             [sub_list[i].center(max_length_by_column[i]+1) for i in range(table_columns)]
             for sub_list in stringified_table_data
         ]
-        table = "| ".join(table_body[0]) + "\n" + "|".join(horizontal_breaks)
+        table = "| ".join(table_body[0]) + "\n" + "|".join(horizontal_breaks) + " "
         for sub_list in table_body[1:]:
             table += "\n" + "| ".join(sub_list)
 

@@ -7,7 +7,7 @@ import unittest.mock
 from contextlib import contextmanager
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from handling_bad_input import handling_bad_input
+from karvonen_heart_rate.karvonen_heart_rate import get_inputs, KarvonenCalculator
 
 @contextmanager
 def captured_output():
@@ -19,33 +19,53 @@ def captured_output():
     finally:
         sys.stdout, sys.stderr = old_out, old_err
 
-class GetPositiveNonzeroNumberTests(unittest.TestCase):
-    """Tests the get_positive_nonzero_number function"""
+class GetInputsTest(unittest.TestCase):
+    """Tests the get_inputs function"""
 
     @unittest.mock.patch("builtins.input")
     def test__rate_is_6(self, mock_inputs):
-        mock_inputs.side_effect = ["0", "Foo", "6"]
+        mock_inputs.side_effect = ["Foo", "Bar", "65", "Foo", "Bar", "22"]
         with captured_output():
-            rate = handling_bad_input.get_positive_nonzero_number(
-                prompt="What is the rate of return?",
-                err_msg="Invalid input."
-            )
-        self.assertEqual(6, rate)
+            inputs_returns = get_inputs()
 
-class CalcYearsToDoubleTests(unittest.TestCase):
-    """Tests the get_numbers_to_sum function"""
+        expected_result = {
+            "resting_heart_rate": 65,
+            "age": 22
+        }
+        self.assertEqual(expected_result, inputs_returns)
 
-    def test__rate_of_4__18_years_to_double(self):
-        years = handling_bad_input.calc_years_to_double(4)
-        self.assertEqual(18, years)
+class KarvonenCalculatorTests(unittest.TestCase):
+    """Tests the KarvonenCalculator class"""
+    def setUp(self):
+        self.calc = KarvonenCalculator(resting_heart_rate=65, age=22)
 
-class PrintResultTest(unittest.TestCase):
-    """Tests the print_result function"""
+    def test__calc_target_heart_rate(self):
+        self.assertEqual(151.45, self.calc.calc_target_heart_rate(65))
 
-    def test__years_is_18(self):
-        expected_result = "It will take 18 years to double your initial investment."
-        result = handling_bad_input.print_result(18)
-        self.assertEqual(expected_result, result)
+    def test__generate_heart_rate_data(self):
+        expected_result = [
+            ["Intensity", "Target Heart Rate"],
+            ["65%", "151.4 bpm"],
+            ["70%", "158.1 bpm"]
+        ]
+
+        with captured_output():
+            self.calc.generate_heart_rate_data(65, 70, 5)
+        self.assertEqual(expected_result, self.calc.intensity_data)
+
+    def test__print_ascii_table(self):
+        with captured_output():
+            self.calc.generate_heart_rate_data(65, 70, 5)
+            self.calc.print_ascii_table()
+
+        expected_result = (
+            "Intensity | Target Heart Rate \n" +
+            "----------|------------------ \n" +
+            "   65%    |     151.4 bpm     \n" +
+            "   70%    |     158.1 bpm     "
+        )
+        self.assertEqual(expected_result, self.calc.table)
+
 
 if __name__ == "__main__":
     unittest.main()
