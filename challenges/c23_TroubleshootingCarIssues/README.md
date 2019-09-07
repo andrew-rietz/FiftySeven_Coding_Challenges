@@ -13,7 +13,7 @@ Create a program that walks the user through
 troubleshooting issue with a car. Use the following
 decision tree to build the system:
 
-![alt text](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c23_TroubleshootingCarIssues/static/decision_tree.png)
+![alt text](https://github.com/andrew-rietz/57_Coding_Challenges/blob/master/challenges/c23_TroubleshootingCarIssues/static/decision_tree.png "decision tree")
 
 #### Example Output
 Is the car silent when you turn the key? y  
