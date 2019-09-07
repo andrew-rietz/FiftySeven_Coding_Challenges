@@ -36,3 +36,7 @@ Also adding testing and better documentation to each challenge as I work through
 [19 -- BMI Calculator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c19_BMICalculator)  
 [20 -- Multistate Sales Tax](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c20_MultistateSalesTax)  
 [21 -- Numbers to Names](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c21_NumbersToNames)  
+[22 -- Comparing Numbers](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c22_ComparingNumbers)  
+[23 -- Troubleshooting Car Issues](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c23_TroubleshootingCarIssues)  
+[23* -- WIP -- Troubleshooting Car Issues Tree Implementation](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c23_TroubleshootingCarIssues_TreeImplementation)  
+[24 -- Anagram Checker](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c24_AnagramChecker)  
