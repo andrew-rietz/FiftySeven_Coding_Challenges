@@ -22,10 +22,11 @@ class PersonalInventory():
     Attributes:
         inventory: (OrderedDict) dict representing the personal inventory. The dictionary
             has three keys, each corresponding to a list of values
-
-            item_name: (str) Name of the tracked item
-            serial: (str) The serial number for the item
-            value: (str) The value of the item, in dollars
+            {
+                item_name (str): ["Name1", "Name2", etc...],
+                serial (str): ["Serial1", "Serial2", etc....],
+                value (str): ["Value1", "Value2", etc....]
+            }
     """
     def __init__(self, inventory=None):
         self.inventory = inventory
@@ -40,25 +41,17 @@ class PersonalInventory():
     def add_item(self):
         """
         Gathers the name, serial number, and value of a new item. If all three
-            are valid, adds the item to the inventory.
+        are valid, adds the item to the inventory.
         """
         item_name = _get_item_name()
         if item_name is None:
             print("Item not added.")
             return None
 
-        if "," in item_name:
-            item_name = item_name.replace(",", "_")
-            print("Coerced all instances of commas (',') in item name to underscores ('_').")
-
         serial = _get_serial()
         if serial is None:
             print("Item not added.")
             return None
-
-        if "," in serial:
-            serial = serial.replace(",", "_")
-            print("Coerced all instances of commas (',') in serial number to underscores ('_').")
 
         value = _get_value()
         if value is None:
@@ -77,7 +70,7 @@ class PersonalInventory():
         column if the user desires.
 
         Args:
-            index: (bool) indicates whether the index should be printed as well
+            index (bool): indicates whether the index should be printed as well
         """
         working_inv = OrderedDict(self.inventory)
         if index:
@@ -103,10 +96,10 @@ class PersonalInventory():
         column if the user desires.
 
         Args:
-            index: (bool) indicates whether the index should be printed as well
-            basedir: (str) Absolute filepath for the directory the local json file is located within
-            subdir: (str) Optional subdirectory that the local json file is located within
-            filename: (str) Optional - name of the local json file
+            index (bool): indicates whether the index should be printed as well
+            basedir (str): Absolute filepath for the directory the local json file is located within
+            subdir (str): Optional - subdirectory that the local json file is located within
+            filename (str): Optional - name of the local json file
         """
         working_inv = OrderedDict(self.inventory)
         if index:
@@ -138,10 +131,10 @@ class PersonalInventory():
         column if the user desires.
 
         Args:
-            index: (bool) indicates whether the index should be printed as well
-            basedir: (str) Absolute filepath for the directory the local json file is located within
-            subdir: (str) Optional subdirectory that the local json file is located within
-            filename: (str) Optional - name of the local json file
+            index (bool): indicates whether the index should be printed as well
+            basedir (str): Absolute filepath for the directory the local json file is located within
+            subdir (str): Optional - subdirectory that the local json file is located within
+            filename (str): Optional - name of the local json file
         """
         working_inv = OrderedDict(self.inventory)
         if index:
@@ -212,9 +205,9 @@ class PersonalInventory():
         Saves the file to local persistent storage in the ./data folder
 
         Args:
-            basedir: (str) Absolute filepath for the directory the local json file is located within
-            subdir: (str) Optional subdirectory that the local json file is located within
-            filename: (str) Optional - name of the local json file
+            basedir (str): Absolute filepath for the directory the local json file is located within
+            subdir (str): Optional subdirectory that the local json file is located within
+            filename (str): Optional - name of the local json file
         """
 
         if basedir is None:

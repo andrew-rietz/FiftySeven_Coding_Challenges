@@ -20,17 +20,16 @@ from util_functions.utils import user_inputs
 
 
 def startup(basedir=None, subdir="data", filename="local_storage.json"):
-    """
-    Check for data in local storage. If it exists, load it into a new PersonalInventory
+    """Check for data in local storage. If it exists, load it into a new PersonalInventory
     class instance. Otherwise initiate a new, blank, instance of the same class.
 
     Args:
-        basedir: (str) Absolute filepath for the directory the local json file is located within
-        subdir: (str) Optional subdirectory that the local json file is located within
-        filename: (str) Optional - name of the local json file
+        basedir (str): Absolute filepath for the directory the local json file is located within
+        subdir (str): Optional subdirectory that the local json file is located within
+        filename (str): Optional - name of the local json file
 
     Returns:
-        inv: (obj) A PersonalInventory class object
+        inv (obj): A PersonalInventory class object
     """
     if basedir is None:
         basedir = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +49,7 @@ def startup(basedir=None, subdir="data", filename="local_storage.json"):
 
 def prompt():
     """Prompts the user for an action and returns the selection"""
+
     allowed_vals = ["Add", "Remove", "Print", "To CSV", "To HTML", "Save", "Exit"]
     action = user_inputs.get_string_in_list(
         prompt=f"What would you like to do? [{', '.join(allowed_vals)}]:",

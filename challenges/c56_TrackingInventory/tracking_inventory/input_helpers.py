@@ -14,14 +14,12 @@ from util_functions.utils import user_inputs
 
 
 def _get_item_name():
-    """
-    Prompts user for the item_name of an item and returns a cleaned version. Because
-    this is intended to be compatible with CSV exports, coerce all commas to underscores.
+    """Prompts user for the item_name of an item and returns a cleaned version.
 
     Args: n/a
 
     Returns:
-        item_name: (str) Serial number input by the user
+        item_name (str): Serial number input by the user
     """
     while True:
         item_name = input("What is the item's name? (Or type quit() to exit): ")
@@ -34,14 +32,14 @@ def _get_item_name():
         return item_name.strip()
 
 def _get_serial():
-    """
-    Prompts user for the serial number of an item and returns a cleaned version. Because
-    this is intended to be compatible with CSV exports, coerce all commas to underscores.
+    """Prompts user for the serial number of an item and returns a cleaned version. If
+    the user decides to exit the item input, prompt for confirmation (serial and name)
+    will both be discarded.
 
     Args: n/a
 
     Returns:
-        serial: (str) Serial number input by the user
+        serial (str): Serial number input by the user
     """
     while True:
         serial = input("What is the item's serial number? (Or type quit() to exit): ")
@@ -58,12 +56,13 @@ def _get_serial():
         return serial.strip()
 
 def _get_value():
-    """Prompts user for the value of an item. Value must be numeric
+    """Prompts user for the value of an item. Value must be numeric. If the user decides to
+    exit the item input, prompt for confirmation (value, serial, and name) will all be discarded.
 
     Args: n/a
 
     Returns:
-        (str) numeric value formatted as float with two decimals
+        (str): numeric value formatted as currency with two decimals
     """
     while True:
         value = user_inputs.get_any_number(

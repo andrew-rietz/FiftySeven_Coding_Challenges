@@ -15,17 +15,17 @@ from collections import OrderedDict
 
 
 def _add_index(working_inv):
-    """
-    Adds a numeric index to the dictionary to help end-user when printed to terminal,
+    """Adds a numeric index to the dictionary to help end-user when printed to terminal,
     or output as csv / html.
 
     Args:
-        working_inv: (OrderedDict) Represents a PersonalInventory class
+        working_inv (OrderedDict): Represents a PersonalInventory class
 
     Returns:
-        working_inv: (OrderedDict) Dictionary with index added as the first key. The associated
-            value is a list of integers from 0 to the maximum length of the ararys associated
-            with the other keys in the OrderedDict.
+        working_inv (OrderedDict): Dictionary with index added as the first key. The associated
+            value is a list of integers from 0 to the maximum length of the arrays associated
+            with the other keys in the OrderedDict. Creates an index user can reference when
+            adding or removing items from inventory.
     """
     working_inv = OrderedDict(working_inv)
     n_rows = len(list(working_inv.values())[0])
@@ -38,11 +38,16 @@ def _get_table_dimensions(working_inv):
     """Gets the dimensions of an inventory object prior to converting into tabular format
 
     Args:
-        working_inv: (OrderedDict) Represents a PersonalInventory class
+        working_inv (OrderedDict): Represents a PersonalInventory class
 
     Returns:
-        dimeions: (dict) contains the dimensions of the table:
-            n_rows, n_cols, column_widths, and table_width
+        dimensions (dict): contains the dimensions of the table:
+            {
+                "column_widths": {},
+                "table_width": 0,
+                "n_rows": len(list(working_inv.values())[0]),
+                "n_cols": len(list(working_inv.keys())),
+            }
     """
     dimensions = {
         "column_widths": {},
@@ -66,18 +71,17 @@ def _get_table_dimensions(working_inv):
     return dimensions
 
 def _setup_headers(dimensions, working_inv, style="terminal"):
-    """
-    Sets up the table headers in preparation for printing to either the terminal or html file
+    """Sets up the table headers in preparation for printing to either the terminal or html file
 
     Args:
-        dimensions: (dict) contains the dimensions of the table:
+        dimensions (dict): contains the dimensions of the table:
             n_rows, n_cols, column_widths, and table_width
-        working_inv: (OrderedDict) Represents a PersonalInventory class
-        style: (str) Defines the style of the resultant table. Allowed values are
+        working_inv (OrderedDict): Represents a PersonalInventory class
+        style (str): Defines the style of the resultant table. Allowed values are
             'terminal' or 'html'.
 
     Returns:
-        header_str: (str) text representation of the row, with the proper delimeters for
+        header_str (str): text representation of the row, with the proper delimeters for
             the given style
     """
     prefix = {
@@ -110,18 +114,17 @@ def _setup_headers(dimensions, working_inv, style="terminal"):
     return header_str
 
 def _setup_body(dimensions, working_inv, style="terminal"):
-    """
-    Sets up the table body in preparation for printing to either the terminal or html file
+    """Sets up the table body in preparation for printing to either the terminal or html file
 
     Args:
-        dimensions: (dict) contains the dimensions of the table:
+        dimensions (dict): contains the dimensions of the table:
             n_rows, n_cols, column_widths, and table_width
-        working_inv: (OrderedDict) Represents a PersonalInventory class
-        style: (str) Defines the style of the resultant table. Allowed values are
+        working_inv (OrderedDict): Represents a PersonalInventory class
+        style (str): Defines the style of the resultant table. Allowed values are
             'terminal' or 'html'.
 
     Returns:
-        header_str: (str) text representation of the row, with the proper delimeters for
+        header_str (str): text representation of the row, with the proper delimeters for
             the given style
     """
     prefix = {
