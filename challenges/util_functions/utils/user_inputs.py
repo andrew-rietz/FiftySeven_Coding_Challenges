@@ -14,13 +14,15 @@ def get_positive_number(prompt, err_msg, exit_val=None):
         positive_val: Positive numeric value from user
     """
     while True:
+        user_val = input(f"{prompt.strip()} ")
+        if user_val == exit_val:
+            return None
+        if user_val is None:
+            continue
         try:
-            user_val = input(f"{prompt.strip()} ")
-            if user_val == exit_val:
-                return None
-            positive_val = float(user_val)
+            positive_val = float(user_val.replace(",", ""))
             if positive_val < 0:
-                raise ValueError
+                raise ValueError("Enter value must be greater than zero.")
             break
         except (ValueError, TypeError):
             print(f"{err_msg.strip()} ", end="")
@@ -40,11 +42,13 @@ def get_any_number(prompt, err_msg, exit_val=None):
         positive_val: Numeric value from user, or None if exit phrase is entered
     """
     while True:
+        user_val = input(f"{prompt.strip()} ")
+        if user_val == exit_val:
+            return None
+        if user_val is None:
+            continue
         try:
-            user_val = input(f"{prompt.strip()} ")
-            if user_val == exit_val:
-                return None
-            numeric_val = float(user_val)
+            numeric_val = float(user_val.replace(",", ""))
             break
         except (ValueError, TypeError):
             print(f"{err_msg.strip()} ", end="")
@@ -68,7 +72,7 @@ def get_string_in_list(prompt, err_msg, allowed_vals, case_sensitive=False, exit
         allowed_vals = [val.lower() for val in allowed_vals]
 
     while True:
-        user_val = input(f"{prompt.strip()} ")
+        user_val = input(f"{prompt.strip()} ").strip()
         if user_val == exit_val:
             return None
         test_val = user_val.lower() if not case_sensitive else user_val

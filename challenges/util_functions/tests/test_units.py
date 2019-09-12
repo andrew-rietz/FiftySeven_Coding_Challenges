@@ -20,7 +20,7 @@ class GetStringInListTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_case_senstive(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", "Bar", "Baz"]
+        mock_inputs.side_effect = ["Foo", "Bar  ", "Baz"]
         named_args = {
             "prompt": "Select a value from the list.",
             "err_msg": "Please enter a valid value.",
@@ -65,16 +65,16 @@ class GetPositiveNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_text_input(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", "Bar", 10]
+        mock_inputs.side_effect = ["Foo", "Bar", "1,000"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value."
         }
-        self.assertEqual(10, get_positive_number(**named_args))
+        self.assertEqual(1000, get_positive_number(**named_args))
 
     @unittest.mock.patch("builtins.input")
     def test_negative_value(self, mock_inputs):
-        mock_inputs.side_effect = [-999, -100, 10]
+        mock_inputs.side_effect = ["-999", "-100", "10"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value."
@@ -103,7 +103,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_text_input(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", "Bar", 10]
+        mock_inputs.side_effect = ["Foo", "Bar", "10"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value."
@@ -112,7 +112,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_negative_value(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", -100]
+        mock_inputs.side_effect = ["Foo", "-100"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value."
@@ -121,7 +121,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_zero_value(self, mock_inputs):
-        mock_inputs.side_effect = ["Foo", 0]
+        mock_inputs.side_effect = ["Foo", "0"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value."
@@ -130,7 +130,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_exit_is_null_string(self, mock_inputs):
-        mock_inputs.side_effect = ["", 100, "asdf"]
+        mock_inputs.side_effect = ["", "100", "asdf"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value.",
@@ -140,7 +140,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_exit_is_None(self, mock_inputs):
-        mock_inputs.side_effect = [None, 100, "asdf"]
+        mock_inputs.side_effect = [None, "100", "asdf"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value.",
@@ -150,7 +150,7 @@ class GetAnyNumberTests(unittest.TestCase):
 
     @unittest.mock.patch("builtins.input")
     def test_numeric_exit(self, mock_inputs):
-        mock_inputs.side_effect = ["-999", 100, "asdf"]
+        mock_inputs.side_effect = ["-999", "100", "asdf"]
         named_args = {
             "prompt": "How many drinks have you had?",
             "err_msg": "Please enter a numeric value.",
