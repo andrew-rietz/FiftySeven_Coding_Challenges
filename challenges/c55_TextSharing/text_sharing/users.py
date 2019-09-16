@@ -1,3 +1,16 @@
+"""
+Defines a `users` blueprint and its associated views
+
+Views:
+    register: registers a new user for the site
+    login: logs a user into the site
+    load_logged_in_user: checks for a user in the existing session, and attempts to load them
+    logout: logs user out of the site and clears them from the session
+
+Methods:
+    login_required: defines a decorator function that requires a logged in user prior to
+        execution of the decorated function / method.
+"""
 import functools
 
 from flask import (
@@ -11,10 +24,6 @@ from werkzeug.security import (
 from text_sharing.psql_db import get_db
 
 # Creates a blueprint named `users`
-# Like the application object, this needs to know where it's
-# defined, so we pass in __name__ as the second argument
-# `url_prefix` will be prepended to all URLs associated with
-# the blueprint
 bp = Blueprint("users", __name__, url_prefix="/users")
 
 
@@ -24,26 +33,19 @@ bp = Blueprint("users", __name__, url_prefix="/users")
 @bp.route("/register", methods=("GET", "POST"))
 def register():
     """
-    Checks inputs from the login form
-    CHECKS:
-    - username has a value
-    - password has a value
-    - username is new (does not exist in database)
+    Checks user credentials from the registration form. Takes the username and
+    password from the form, and queries against the DB. If a user is found,
+    returns an error message. Otherwise, adds a new user to the database and stores
+    their password hash.
 
-    SUCCESS:
-    - user added to database
-    - database saved (commit)
-    - redirects to the login
-
-    FAILURE:
-    - tracks errors and passes to "flash"
-    - renders the register HTML
+    Redirects to the login form if successful. Otherwise redirects to the registration
+    page.
     """
     if request.method == "POST":
         # `request.form` is a special dictionary that maps form
         # keys and their values
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username", None)
+        password = request.form.get("password", None)
         db = get_db()
         error = None
 
@@ -76,23 +78,19 @@ def register():
 @bp.route("/login", methods=("GET", "POST"))
 def login():
     """
-    Checks inputs from the login form
-    CHECKS:
-    - username exists in database
-    - hashed password matches database password hash
+    Checks user credentials from the login form. Takes the username and
+    password from the login form, and queries against the DB. If a valid
+    user is found, verifies that the password hash matches the expected value.
 
-    SUCCESS:
-    - logs in user
-    - stores their id in a cookie
-    - redirects to the index
+    If the inputs are valid, query the database for the associated
+    user_id and store the information in g.user. Also set the session's
+    user_id to the id of the user that just logged in.
 
-    FAILURE:
-    - tracks errors and passes to "flash"
-    - renders the login HTML
+    If user_id in the session is `None`, g.user is set to None
     """
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username", None)
+        password = request.form.get("password", None)
         db = get_db()
         error = None
         # Query the database for a user and return all columns
@@ -104,19 +102,20 @@ def login():
         if not user:
             error = "Incorrect username."
         elif len(user) > 1:
+            # Should never happen if users are added via register, but catch anyways
             error = "Duplicate users -- login failed"
         else:
             user = user[0]
             g.user = user
 
+            # check_password_hash is a flask built-in
             if not check_password_hash(user["password"], password):
                 error = "Incorrect password."
 
         if error is None:
             # session is a dictionary that stores data across requests
             # When validation succeeds, the user's `id` is stored in
-            # a new session as a cookie. Flask securely signs
-            # cookies so they can't be tampered with
+            # a new session.
             session.clear()
             session["user_id"] = user["id"]
             return redirect(url_for("index"))
@@ -124,8 +123,7 @@ def login():
             # Now that the user's `id` is stored in the session,
             # it will be available on subsequent requests.
             # At the beginning of each request, if a user is logged in
-            # their information should be loaded and available to
-            # views
+            # their information should be loaded and available to views
 
         flash(error)
 
@@ -137,16 +135,11 @@ def login():
 @bp.before_app_request
 def load_logged_in_user():
     """
-    Checks inputs from the login form
-    CHECKS:
-    - user_id is stored as a cookie in the session
+    Checks user credentials from the session.
+    If the inputs are valid, query the database for the associated
+    user_id and store the information in g.user.
 
-    SUCCESS:
-    - queries the database for the user_id
-    - stores the user data in g.user
-
-    FAILURE:
-    - g.user is set to None
+    If user_id in the session is `None`, g.user is set to None
     """
     user_id = session.get("user_id")
 
@@ -174,21 +167,13 @@ def logout():
     session.clear()
     return redirect(url_for("index"))
 
-# Create a new decorator `login_required` that can be applied
-# to other functions
+
 def login_required(view):
     """
-    Return a new view function that wraps the original view
-    it's applied to.
-
-    CHECKS:
-    - user is loaded (not None)
-
-    SUCCESS:
-    - original view is called and continues normally
-
-    FAILURE:
-    - redirects to the login page
+    Return a new view decorator function that wraps the original view
+    it's applied to. The function checks if a user is loaded. If
+    there is a user, the original view is called and normal
+    operation continues. Otherwise redirects to the login page.
     """
     @functools.wraps(view)
     def wrapped_view(**kwargs):

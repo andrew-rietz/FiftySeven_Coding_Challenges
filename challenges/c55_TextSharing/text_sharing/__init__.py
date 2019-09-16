@@ -3,7 +3,7 @@ import os
 from flask import Flask
 
 
-def create_app(test_config=None):
+def create_app(testing=False):
     """
     This file will contain the application factory
     The application factory sets any configuration, registration, and
@@ -19,18 +19,11 @@ def create_app(test_config=None):
         __name__,
         instance_path=os.path.join(os.path.abspath(os.curdir), 'instance'),
         instance_relative_config=True)
-    app.config.from_object("instance.config.DevelopmentConfig")
-    # app.config.from_pyfile("config.py")
-    # print(app.config)
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        # will override default config with values taken from our config.py file
-        # for instance, can be used to set a real SECRET_KEY
-        app.config.from_pyfile("config.py", silent=True)
+    if testing:
+        app.config.from_object(testing)
     else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+        app.config.from_object("instance.config.DevelopmentConfig")
 
     # ensure the instance folder exists - Flask doesn't create automatically so
     # you need to tell it to be created
