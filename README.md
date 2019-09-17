@@ -39,11 +39,15 @@ Also adding testing and better documentation to each challenge as I work through
 [22 -- Comparing Numbers](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c22_ComparingNumbers)  
 [23 -- Troubleshooting Car Issues](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c23_TroubleshootingCarIssues)  
 [23* -- WIP -- Troubleshooting Car Issues Tree Implementation](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c23_TroubleshootingCarIssues_TreeImplementation)  
+
+#### Functions
 [24 -- Anagram Checker](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c24_AnagramChecker)  
 [25 -- Password Strength Indicator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c25_PasswordStrengthIndicator)  
 [26 -- Months to Pay Off a Credit Card](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c26_MonthsToPayOffACreditCard)  
 [27 -- Validating Inputs](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c27_ValidatingInputs)  
-[28 -- Adding Numbers](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c28_Adding Numbers)  
+
+#### Repetition
+[28 -- Adding Numbers](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c28_AddingNumbers)  
 [29 -- Handling Bad Input](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c29_HandlingBadInput)  
 [30 -- Multiplication Table](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c30_MultiplicationTable)  
 [31 -- Karvonen Heart Rate](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c31_KarvonenHeartRate)  
