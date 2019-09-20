@@ -20,7 +20,7 @@ def captured_output():
         sys.stdout, sys.stderr = old_out, old_err
 
 class MagicEightBallTests(unittest.TestCase):
-    """Tests the magic_eight_ball class"""
+    """Tests the MagicEightBall class"""
 
     def setUp(self):
         self.ball = MagicEightBall()

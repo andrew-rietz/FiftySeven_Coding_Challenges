@@ -1,5 +1,5 @@
 """
-Defines and instantiates a Magic 8 Ball class
+Defines and instantiates a MagicEightBall class
 """
 from random import randrange
 
@@ -17,7 +17,7 @@ class MagicEightBall():
 def main():
     eight_ball = MagicEightBall()
 
-    userQuestion = input("What's your question? ")
+    _ = input("What's your question? ")
     print(eight_ball.answer())
 
 
