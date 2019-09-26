@@ -10,6 +10,7 @@ import unittest.mock
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.user_inputs import get_string_in_list, get_positive_number, get_any_number
+from utils.table import ascii_table
 
 class GetStringInListTests(unittest.TestCase):
     """Tests the function that prompts the user for a text response"""
@@ -160,3 +161,20 @@ class GetAnyNumberTests(unittest.TestCase):
 
     def tearDown(self):
         sys.stdout = sys.__stdout__
+
+class AsciiTableTests(unittest.TestCase):
+    """Tests for the ascii_table function"""
+
+    def test__table(self):
+        table_data = [
+            ["Foo", "Bar"],
+            ["1", "200"],
+            ["", "3"]
+        ]
+        expected_result = (
+            "Foo  | Bar \n" +
+            "-----|-----\n" +
+            " 1   | 200 \n" +
+            "     |  3  "
+        )
+        self.assertEqual(expected_result, ascii_table(table_data))
