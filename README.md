@@ -51,3 +51,13 @@ Also adding testing and better documentation to each challenge as I work through
 [29 -- Handling Bad Input](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c29_HandlingBadInput)  
 [30 -- Multiplication Table](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c30_MultiplicationTable)  
 [31 -- Karvonen Heart Rate](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c31_KarvonenHeartRate)  
+[32 -- Guess the Number](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c32_GuessTheNumber)  
+
+#### Data Structures
+[33 -- Magic 8 Ball](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c33_Magic8Ball)  
+[34 -- Employee List Removal](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c34_EmployeeListRemoval)  
+[35 -- Picking a Winner](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c35_PickingAWinner)  
+[36 -- Computing Statistics](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c36_ComputingStatistics)  
+[37 -- Password Generator](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c37_PasswordGenerator)  
+[38 -- Filtering Values](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c38_FilteringValues)  
+[39 -- Sorting Records](https://github.com/andrew-rietz/57_Coding_Challenges/tree/master/challenges/c39_SortingRecords)  
