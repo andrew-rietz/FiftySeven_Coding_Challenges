@@ -9,8 +9,9 @@ from datetime import datetime
 class User(db.Model):
     __tablename__ = "users"
 
-    id = db.Column(db.Serial, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, nullable=False)
+    email = db.Column(sb.string(50), unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
     type = db.Column(db.String(32), nullable=False)
 
@@ -20,8 +21,8 @@ class User(db.Model):
 class Question(db.Model):
     __tablename__ = "questions"
 
-    id = db.Column(db.Serial, primary_key=True)
-    author_id = db.Column(db.Serial, db.ForeignKey("users.id"), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     edited = db.Column(db.DateTime, nullable=True)
     prompt = db.Column(db.Text, nullable=False)

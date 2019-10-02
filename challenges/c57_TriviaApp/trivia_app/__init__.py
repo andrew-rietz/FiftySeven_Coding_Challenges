@@ -1,10 +1,9 @@
-from flask import Flask, g
+from flask import Flask
+from flask import g as flask_g
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from flask_migrate import Migrate
-
-# Globally accessible libraries
-db = SQLAlchemy()
+from flask_redis import FlaskRedis
 
 
 def create_app():
@@ -12,26 +11,23 @@ def create_app():
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object('config.DevelopmentConfig')
 
-    # Initialize Plugins
-    db.init_app(app)
-    migrate = Migrate(app, db)
-
-    # @app.route("/hello")
-    # def hello():
-    #     return "Hello, Trivia World!"
+    # Set globals
+    db = SQLAlchemy()
+    migrate = Migrate()
+    redis_store = FlaskRedis()
 
     with app.app_context():
-        # Imports
+        # Set global values
+        redis_store.endpoint = app.config['ENDPOINT']
+        redis_store.post_query = app.config['POST_QUERY']
 
-
-        # Create tables for our models
-        db.create_all()
-
-        # Include our Routes
-
+        # Initialize globals
+        redis_store.init_app(app)
+        db.init_app(app)
+        migrate.init_app(app, db)
 
         # Register Blueprints
         # app.register_blueprint(auth.auth_bp)
         # app.register_blueprint(admin.admin_bp)
 
-        return app
+return app
