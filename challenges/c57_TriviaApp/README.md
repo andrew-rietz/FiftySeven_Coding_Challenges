@@ -29,10 +29,15 @@ we'll source the package from our shell script `start.sh`
 * install Flask-Migrate
 * Add database to application factory
 * Define database models (`models.py`)
-* Initiliaze and perform first migration for the database:
-  * flask db init (sets up the `migrations` directory)
-  * flask db migrate -m "<<some description of migration>>" (generates a migration script)
-  * flask db upgrade (applies changes to the database)
+* Initialize and perform first migration for the database.
+  Then each time the database models change repeat the
+  migrate and upgrade commands.
+  1. flask db init (sets up the `migrations` directory)
+  1. flask db migrate -m "<<some description of migration>>" (generates a migration script)
+  >The migration script needs to be reviewed and edited, as Alembic currently does not detect every change you make to your models. In particular, Alembic is currently unable to detect table name changes, column name changes, or anonymously named constraints.  
+
+  1. flask db upgrade (applies changes to the database)
+  
 
 
 
