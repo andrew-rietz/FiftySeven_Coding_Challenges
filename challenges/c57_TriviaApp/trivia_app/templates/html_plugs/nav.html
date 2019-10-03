@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user["username"] }}</span></li>
+      <li><a href="{{ url_for('index') }}">Index</a></li>
+      <li><a href="{{ url_for('users.logout') }}">Log Out</a></li>
+    {% else %}
+      <li><a href="{{ url_for('index') }}">Index</a></li>
+      <li><a href="{{ url_for('users.register') }}">Register</a></li>
+      <li><a href="{{ url_for('users.login') }}">Log In</a></li>
+    {% endif %}
+  </ul>
+</nav>
